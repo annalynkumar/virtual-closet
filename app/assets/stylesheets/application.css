@@ -41,14 +41,29 @@ html, body {
   margin: 0;
 }
 
-/* Make the main layout fill the entire screen */
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Force main content to grow and push background down */
-main {
-  flex: 1;
+/* Header text + links color */
+header {
+  background-color: transparent; /* keep your current header background */
+}
+
+/* Brand title */
+header strong {
+  color: #2f5d4a;   /* dark green */
+}
+
+/* Header links */
+header a {
+  color: #2f5d4a;
+  font-weight: 500;
+}
+
+/* Hover effect */
+header a:hover {
+  color: #1f4033;
 }

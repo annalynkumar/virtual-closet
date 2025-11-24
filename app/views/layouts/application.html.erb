@@ -9,6 +9,17 @@
     <%= csp_meta_tag %>
 
     <%= yield :head %>
+    <!-- 👇 DEFINE CUSTOM COLORS *BEFORE* PICO -->
+  <style>
+    :root {
+      /* Your brand colors */
+      --pico-primary: #4f7f6a;
+      --pico-primary-hover: #3e6655;
+      --pico-primary-focus: #3e6655;
+      --pico-primary-inverse: #ffffff;
+      --pico-background-color: #f6f5f3;
+    }
+  </style>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.conditional.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css">
@@ -25,7 +36,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="pico">
+  <body class="pico" style="background-color: #f6f5f3;">
+
     <header>
   <div class="container-two-thirds">
     <nav>

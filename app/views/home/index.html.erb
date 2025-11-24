@@ -109,15 +109,13 @@
     <p class="center-text">Welcome, <%= current_user.name.presence || current_user.email %>!
 </p>
 
-    <p class="center-text">
-      <%= link_to "View My Closet", items_path %> |
-      <%= link_to "View My Outfits", outfits_path %>
-    </p>
+    <div class="action-buttons">
+  <%= link_to "Add an Item", new_item_path, class: "button-primary" %>
+  <%= link_to "View My Outfits", outfits_path, class: "button-primary" %>
+</div>
 
-    <p class="center-text">
-      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-    </p>
 
+   
   <% else %>
     
 

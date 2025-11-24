@@ -132,3 +132,21 @@ main {
 .hero {
   margin-top: 1.75rem;  
 }
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.button-primary {
+  background: #2f5d4a;
+  color: #ffffff;
+  padding: 0.9rem 1.9rem;
+  border-radius: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.05rem;
+}

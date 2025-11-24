@@ -68,10 +68,22 @@ header a:hover {
   color: #1f4033;
 }
 
+/* Global body font */
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.2px;
 }
 
+/* Brand title - luxury serif */
 header strong {
-  font-weight: 600;
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+/* Header links */
+header nav a {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }

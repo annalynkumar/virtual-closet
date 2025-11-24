@@ -67,3 +67,11 @@ header a {
 header a:hover {
   color: #1f4033;
 }
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+header strong {
+  font-weight: 600;
+}

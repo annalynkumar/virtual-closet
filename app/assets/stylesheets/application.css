@@ -30,3 +30,25 @@ header nav ul li:first-child {
 header nav ul li + li {
   margin-left: 1rem;
 }
+
+:root {
+  --pico-primary: #2f2f2f;
+  --pico-primary-hover: #1f1f1f;
+  --pico-background-color: #f4f4f4;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Make the main layout fill the entire screen */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Force main content to grow and push background down */
+main {
+  flex: 1;
+}

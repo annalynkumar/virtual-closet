@@ -73,3 +73,43 @@
 
   </body>
 </html>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.conditional.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css">
+
+    <!-- 👇 ADD THIS BLOCK HERE -->
+    <style>
+      /* Change global primary color + background */
+      :root {
+        --pico-primary: #4f7f6a;
+        --pico-primary-hover: #3e6655;
+        --pico-primary-focus: #3e6655;
+        --pico-primary-inverse: #ffffff;
+      }
+
+      body {
+        background-color: #f6f5f3;
+      }
+
+      
+      label abbr {
+        display: none;
+      }
+
+      
+      a {
+        color: #4f7f6a;
+      }
+      a:hover {
+        color: #3e6655;
+      }
+
+      button,
+      input[type="submit"] {
+        background-color: #4f7f6a !important;
+        border-color: #4f7f6a !important;
+      }
+    </style>
+
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>

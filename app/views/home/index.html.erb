@@ -152,6 +152,7 @@
 
   <% end %>
 
+  <% unless user_signed_in? %>
   <div class="how-it-works-wrapper">
     <div class="how-it-works-title">How It Works</div>
 
@@ -172,5 +173,6 @@
       </div>
     </div>
   </div>
+<% end %>
 
 </div>

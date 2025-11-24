@@ -1,22 +1,175 @@
-<h1>My Closet & Outfit App</h1>
+<style>
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
 
-<% if user_signed_in? %>
-  <p>Welcome, <%= current_user.email %>!</p>
+  body {
+    min-height: 100vh;
+    background: #f7f3ef;
+  }
 
-  <p>
-    <%= link_to "View My Closet", items_path %> |
-    <%= link_to "View My Outfits", outfits_path %>
-  </p>
+  main {
+    min-height: 100vh;
+    background: #f7f3ef;
+  }
 
-  <p>
-    <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-  </p>
+  
+  .page-content {
+    min-height: 100vh;
+    padding-bottom: 6rem;
+  }
 
-<% else %>
-  <p>Welcome! Please log in or sign up to start building outfits from your closet.</p>
+ 
+  .hero {
+    margin-bottom: 2rem;
+  }
 
-  <p>
-    <%= link_to "Log in", new_user_session_path %> |
-    <%= link_to "Sign up", new_user_registration_path %>
-  </p>
-<% end %>
+  .hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero h3 {
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .center-text {
+    text-align: center;
+  }
+
+  .hero-links a {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  
+  .how-it-works-wrapper {
+  margin-top: 3rem;
+  border: 2px solid #2f5d4a;
+  border-radius: 22px;
+  padding: 2rem;
+  background: #f7f3ef;
+}
+
+
+  .how-it-works-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .step-box {
+    background: #7d9a6bff;
+    border-radius: 18px;
+    padding: 1rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  .step-box,
+  .step-box * {
+    color: #f8f3ec !important;
+  }
+
+  .step-box strong {
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-box p {
+    line-height: 1.6;
+  }
+
+  
+</style>
+
+<div class="page-content">
+
+  
+  <div class="hero">
+    <h1 class="center-text">Create Outfits Effortlessly</h1>
+
+    <h3 class="center-text">
+      Upload your wardrobe. Mix and match pieces.<br>
+      Let your virtual closet help you style with ease.
+    </h3>
+  </div>
+
+  <% if user_signed_in? %>
+    <p class="center-text">Welcome, <%= current_user.email %>!</p>
+
+    <p class="center-text">
+      <%= link_to "View My Closet", items_path %> |
+      <%= link_to "View My Outfits", outfits_path %>
+    </p>
+
+    <p class="center-text">
+      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+    </p>
+
+  <% else %>
+    
+
+    <div style="text-align: center; margin-top: 1.5rem;">
+  <a href="<%= new_user_session_path %>"
+     style="
+       background:#2f5d4a;
+       color:white;
+       padding:14px 28px;
+       border-radius:10px;
+       font-weight:600;
+       text-decoration:none;
+       margin-right:12px;
+       display:inline-block;
+     ">
+    Log in
+  </a>
+
+  <a href="<%= new_user_registration_path %>"
+     style="
+       background:#2f5d4a;
+       color:white;
+       padding:14px 28px;
+       border-radius:10px;
+       font-weight:600;
+       text-decoration:none;
+       display:inline-block;
+     ">
+    Sign up
+  </a>
+</div>
+
+  <% end %>
+
+  <div class="how-it-works-wrapper">
+    <div class="how-it-works-title">How It Works</div>
+
+    <div class="steps">
+      <div class="step-box">
+        <strong>1. Upload Your Clothes</strong>
+        <p>Add photos and details of items in your closet.</p>
+      </div>
+
+      <div class="step-box">
+        <strong>2. Create Outfits</strong>
+        <p>Mix and match pieces to build complete looks.</p>
+      </div>
+
+      <div class="step-box">
+        <strong>3. Plan Your Style</strong>
+        <p>Save outfits for events, seasons, or daily wear.</p>
+      </div>
+    </div>
+  </div>
+
+</div>

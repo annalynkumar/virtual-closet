@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :items
-  resources :outfits   # you’ll want this soon too
+  resources :outfits 
 
   root to: "home#index"
 end

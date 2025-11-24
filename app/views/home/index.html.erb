@@ -1,5 +1,4 @@
 <style>
-  
   html, body {
     height: 100%;
     margin: 0;
@@ -11,17 +10,15 @@
   }
 
   main {
-    min-height: 100vh;
+    min-height: calc(100vh - 80px);
     background: #f7f3ef;
   }
 
-  
   .page-content {
     min-height: 100vh;
     padding-bottom: 6rem;
   }
 
- 
   .hero {
     margin-bottom: 2rem;
   }
@@ -40,20 +37,13 @@
     text-align: center;
   }
 
-  .hero-links a {
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
-
-  
   .how-it-works-wrapper {
-  margin-top: 3rem;
-  border: 2px solid #2f5d4a;
-  border-radius: 22px;
-  padding: 2rem;
-  background: #f7f3ef;
-}
-
+    margin-top: 3rem;
+    border: 2px solid #2f5d4a;
+    border-radius: 22px;
+    padding: 2rem;
+    background: #f7f3ef;
+  }
 
   .how-it-works-title {
     text-align: center;
@@ -90,12 +80,30 @@
     line-height: 1.6;
   }
 
-  
+  .action-buttons {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .button-primary {
+    background: #2f5d4a;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    margin: 0 10px;
+    display: inline-block;
+  }
+
+  .button-primary:hover {
+    background: #244a3b;
+  }
 </style>
 
 <div class="page-content">
 
-  
+  <% unless user_signed_in? %>
   <div class="hero">
     <h1 class="center-text">Create Outfits Effortlessly</h1>
 
@@ -104,73 +112,41 @@
       Let your virtual closet help you style with ease.
     </h3>
   </div>
+<% end %>
+
 
   <% if user_signed_in? %>
-    <p class="center-text">Welcome, <%= current_user.name.presence || current_user.email %>!
-</p>
+    <p class="center-text">
+      Welcome, <%= current_user.name.presence || current_user.email %>!
+    </p>
 
     <div class="action-buttons">
-  <%= link_to "Add an Item", new_item_path, class: "button-primary" %>
-  <%= link_to "View My Outfits", outfits_path, class: "button-primary" %>
-</div>
-
-
-   
-  <% else %>
-    
-
-    <div style="text-align: center; margin-top: 1.5rem;">
-  <a href="<%= new_user_session_path %>"
-     style="
-       background:#2f5d4a;
-       color:white;
-       padding:14px 28px;
-       border-radius:10px;
-       font-weight:600;
-       text-decoration:none;
-       margin-right:12px;
-       display:inline-block;
-     ">
-    Log in
-  </a>
-
-  <a href="<%= new_user_registration_path %>"
-     style="
-       background:#2f5d4a;
-       color:white;
-       padding:14px 28px;
-       border-radius:10px;
-       font-weight:600;
-       text-decoration:none;
-       display:inline-block;
-     ">
-    Sign up
-  </a>
-</div>
-
+      <%= link_to "Add an Item", new_item_path, class: "button-primary" %>
+      <%= link_to "View My Outfits", outfits_path, class: "button-primary" %>
+    </div>
   <% end %>
 
   <% unless user_signed_in? %>
-  <div class="how-it-works-wrapper">
-    <div class="how-it-works-title">How It Works</div>
+    <div class="how-it-works-wrapper">
+      <div class="how-it-works-title">How It Works</div>
 
-    <div class="steps">
-      <div class="step-box">
-        <strong>1. Upload Your Clothes</strong>
-        <p>Add photos and details of items in your closet.</p>
-      </div>
+      <div class="steps">
+        <div class="step-box">
+          <strong>1. Upload Your Clothes</strong>
+          <p>Add photos and details of items in your closet.</p>
+        </div>
 
-      <div class="step-box">
-        <strong>2. Create Outfits</strong>
-        <p>Mix and match pieces to build complete looks.</p>
-      </div>
+        <div class="step-box">
+          <strong>2. Create Outfits</strong>
+          <p>Mix and match pieces to build complete looks.</p>
+        </div>
 
-      <div class="step-box">
-        <strong>3. Plan Your Style</strong>
-        <p>Save outfits for events, seasons, or daily wear.</p>
+        <div class="step-box">
+          <strong>3. Plan Your Style</strong>
+          <p>Save outfits for events, seasons, or daily wear.</p>
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 
 </div>

@@ -1,0 +1,22 @@
+<h1>My Closet & Outfit App</h1>
+
+<% if user_signed_in? %>
+  <p>Welcome, <%= current_user.email %>!</p>
+
+  <p>
+    <%= link_to "View My Closet", items_path %> |
+    <%= link_to "View My Outfits", outfits_path %>
+  </p>
+
+  <p>
+    <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+  </p>
+
+<% else %>
+  <p>Welcome! Please log in or sign up to start building outfits from your closet.</p>
+
+  <p>
+    <%= link_to "Log in", new_user_session_path %> |
+    <%= link_to "Sign up", new_user_registration_path %>
+  </p>
+<% end %>

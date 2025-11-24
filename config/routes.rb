@@ -56,7 +56,7 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  devise_for :users
+devise_for :users, sign_out_via: :delete
 
   resources :items
   resources :outfits

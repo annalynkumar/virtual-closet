@@ -47,6 +47,7 @@
     <header>
   <div class="container-two-thirds">
     <nav>
+    
       <ul>
         <li>
           <a href="/">
@@ -67,7 +68,8 @@
             <a href="/users/edit">Edit profile</a>
           </li>
           <li>
-            <a href="/users/sign_out">Log out</a>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
+
           </li>
         <% end %>
       </ul>

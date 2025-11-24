@@ -10,3 +10,9 @@
  */
 
 @import "custom-image.css";
+
+.container-two-thirds {
+  max-width: 66%;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -16,3 +16,17 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+header nav ul {
+  display: flex !important;
+  align-items: center !important;
+  width: 100%;
+}
+
+header nav ul li:first-child {
+  margin-right: auto !important;
+}
+
+header nav ul li + li {
+  margin-left: 1rem;
+}

@@ -37,33 +37,31 @@ body {
   flex-direction: column;
 }
 
-/* Header text + links color */
 header {
-  background-color: transparent; /* keep your current header background */
+  background-color: transparent; 
 }
 
-/* Brand title */
+
 header strong {
-  color: #2f5d4a;   /* dark green */
+  color: #2f5d4a;   
 }
 
-/* Header links */
+
 header a {
   color: #2f5d4a;
   font-weight: 500;
 }
 
-/* Hover effect */
+
 header a:hover {
   color: #1f4033;
 }
 
-/* BODY FONT */
+
 body {
   font-family: 'Inter', sans-serif;
 }
 
-/* HEADERS FONT */
 h1, h2, h3, h4, .header-logo {
   font-family: 'Playfair Display', serif;
   letter-spacing: 0.5px;

@@ -106,7 +106,8 @@
   </div>
 
   <% if user_signed_in? %>
-    <p class="center-text">Welcome, <%= current_user.email %>!</p>
+    <p class="center-text">Welcome, <%= current_user.name.presence || current_user.email %>!
+</p>
 
     <p class="center-text">
       <%= link_to "View My Closet", items_path %> |

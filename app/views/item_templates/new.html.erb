@@ -9,14 +9,28 @@
       <%= form.text_field :name, class: "form-control", placeholder: "White shirt" %>
     </div>
 
-    <div style="margin-bottom: 1rem;">
+   <div style="margin-bottom: 1rem;">
       <label>Category:</label>
-      <%= form.select :category, ["Top", "Pants", "Shoes", "Outerwear", "Dress"], {}, class: "form-control" %>
+      <%= form.select :category,
+                      ["Top", "Pant", "Skirt", "Dress", "Outerwear", "Shoes", "Accessories"],
+                      {},
+                      class: "form-control" %>
     </div>
 
     <div style="margin-bottom: 1rem;">
       <label>Color:</label>
-      <%= form.select :color, ["White", "Black", "Blue", "Beige", "Red", "Green"], {}, class: "form-control" %>
+      <%= form.select :color,
+            {
+              "Neutrals"       => ["White", "Black", "Gray", "Beige", "Brown", "Cream", "Tan", "Khaki"],
+              "Blues"          => ["Navy", "Blue", "Light Blue", "Teal", "Turquoise"],
+              "Greens"         => ["Green", "Olive", "Dark Green", "Mint"],
+              "Warm Tones"     => ["Yellow", "Mustard", "Orange", "Rust", "Red", "Burgundy"],
+              "Pinks/Purples"  => ["Pink", "Blush", "Hot Pink", "Purple", "Lavender"],
+              "Metallics"      => ["Gold", "Silver"],
+              "Other"          => ["Multicolor", "Patterned"]
+            },
+            {},
+            class: "form-control" %>
     </div>
 
     <div style="margin-bottom: 1rem;">
@@ -29,3 +43,15 @@
   <% end %>
 
 </div>
+<article>
+  <ul>
+    <% @list_of_items.each do |an_item| %>
+  <li>
+    <a href="/items/<%= an_item.id %>">
+      <%= an_item.name %>
+    </a>
+  </li>
+<% end %>
+
+  </ul>
+</article>

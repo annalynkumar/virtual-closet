@@ -76,7 +76,7 @@
     </h2>
   </header>
 
-  <form action="/modify_item/<%= @the_item.id %>"  method="post" >
+  <form action="/modify_item/<%= @the_item.name %>"  method="post" >
     <div>
       <label for="name_box">
         Name
@@ -114,7 +114,7 @@
         User
       </label>
 
-      <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_item.user_id %>">
+      <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_item.user_name %>">
     </div>
 
     <button type="submit">

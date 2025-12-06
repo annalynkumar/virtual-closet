@@ -13,9 +13,11 @@ class ItemsController < ApplicationController
 
 
   def new
-    @item = Item.new
-    render template: "item_templates/new"
-  end
+  @item = Item.new
+  @list_of_items = Item.order(created_at: :desc) # ← Add this line
+  render template: "item_templates/new"
+end
+
 
   def show
     the_id = params.fetch("path_id")

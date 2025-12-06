@@ -51,13 +51,13 @@
 <article>
   <ul>
     <% @list_of_items.each do |an_item| %>
-      <li>
-        <a href="/items/<%= an_item.name %>">
-          Item #<%= an_item.id %>
-        </a>
-      </li>
-    <% end %>
+  <li>
+    <a href="/items/<%= an_item.name %>">
+      <%= an_item.name %>
+    </a>
+  </li>
+<% end %>
+
   </ul>
 </article>
-
 <hr>

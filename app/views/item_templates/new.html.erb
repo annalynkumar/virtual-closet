@@ -47,7 +47,7 @@
   <ul>
     <% @list_of_items.each do |an_item| %>
   <li>
-    <a href="/items/<%= an_item.id %>">
+    <a href="/items/<%= an_item.name %>">
       <%= an_item.name %>
     </a>
   </li>
@@ -55,4 +55,3 @@
 
   </ul>
 </article>
-

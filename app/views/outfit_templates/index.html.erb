@@ -1,67 +1,60 @@
-<h1>
-  List of all outfits
-</h1>
+<h2 class="mb-4">My Items</h2>
 
-<hr>
-
-<article>
-  <header>
-    <h2>
-      Add a new outfit
-    </h2>
-  </header>
-
-  <form action="/insert_outfit" method="post">
-    <div>
-      <label for="name_box">
-        Name
-      </label>
-
-      <input type="text" id="name_box" name="query_name">
-    </div>
-
-    <div>
-      <label for="occasion_box">
-        Occasion
-      </label>
-
-      <input type="text" id="occasion_box" name="query_occasion">
-    </div>
-
-    <div>
-      <label for="season_box">
-        Season
-      </label>
-
-      <input type="text" id="season_box" name="query_season">
-    </div>
-
-    <div>
-      <label for="user_id_box">
-        User
-      </label>
-
-      <input type="text" id="user_id_box" name="query_user_id">
-    </div>
-
-    <button type="submit">
-      Create outfit
-    </button>
-  </form>
-</article>
-
-<hr>
-
-<article>
-  <ul>
-    <% @list_of_outfits.each do |an_outfit| %>
-      <li>
-        <a href="/outfits/<%= an_outfit.id %>">
-          Outfit #<%= an_outfit.id %>
-        </a>
-      </li>
+<div id="itemCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <% @list_of_items.each_with_index do |item, index| %>
+      <div class="carousel-item <%= index == 0 ? 'active text-center' : 'text-center' %>">
+        <h4><%= item.name %></h4>
+        <% if item.image.attached? %>
+          <%= image_tag item.image.variant(resize_to_limit: [300, 300]), class: "d-block mx-auto", alt: item.name %>
+        <% else %>
+          <p>No image uploaded</p>
+        <% end %>
+      </div>
     <% end %>
-  </ul>
-</article>
+  </div>
 
-<hr>
+  <button class="carousel-control-prev" type="button" data-bs-target="#itemCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#itemCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<hr class="my-5">
+
+<h2 class="mb-4">My Outfits</h2>
+
+<div id="outfitCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <% @list_of_outfits.each_with_index do |outfit, index| %>
+      <div class="carousel-item <%= index == 0 ? 'active text-center' : 'text-center' %>">
+        <h4><%= outfit.name %></h4>
+        <p><strong>Occasion:</strong> <%= outfit.occasion %></p>
+        <p><strong>Season:</strong> <%= outfit.season %></p>
+        <% if outfit.items.any? %>
+          <p><strong>Items:</strong></p>
+          <ul class="list-unstyled">
+            <% outfit.items.each do |item| %>
+              <li><%= item.name %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No items in this outfit.</p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#outfitCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#outfitCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

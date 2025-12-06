@@ -1,11 +1,11 @@
 class OutfitsController < ApplicationController
-  def index
-    matching_outfits = Outfit.all
+ def index
+  @list_of_outfits = Outfit.order({ :created_at => :desc })
+  @list_of_items = Item.order({ :created_at => :desc })
 
-    @list_of_outfits = matching_outfits.order({ :created_at => :desc })
+  render({ :template => "outfit_templates/index" })
+end
 
-    render({ :template => "outfit_templates/index" })
-  end
 
   def show
     the_id = params.fetch("path_id")

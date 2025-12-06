@@ -1,6 +1,32 @@
-<h1>
-  Add an item
-</h1>
+<h2>Add a New Item</h2>
+
+<form action="/items" method="post">
+  <%= csrf_meta_tags %>
+
+  <label>
+    Name:
+    <input type="text" name="query_name" placeholder="White shirt">
+  </label>
+
+  <label>
+    Category:
+    <input type="text" name="query_category" placeholder="Top, Pants, Shoes...">
+  </label>
+
+  <label>
+    Color:
+    <input type="text" name="query_color" placeholder="Blue, Black, Beige...">
+  </label>
+
+  <label>
+    Image URL:
+    <input type="text" name="query_image_url" placeholder="https://example.com/shirt.png">
+  </label>
+
+  <input type="hidden" name="query_user_id" value="<%= current_user.id %>">
+
+  <button class="button-primary">Add Item</button>
+</form>
 
 <hr>
 

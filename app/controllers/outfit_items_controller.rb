@@ -1,5 +1,4 @@
 class OutfitItemsController < ApplicationController
-  
   def index
     matching_outfit_items = OutfitItem.all
     @list_of_outfit_items = matching_outfit_items.order({ created_at: :desc })
@@ -57,5 +56,4 @@ class OutfitItemsController < ApplicationController
     the_outfit_item.destroy
     redirect_to "/outfit_items", notice: "Outfit item deleted successfully."
   end
-
 end

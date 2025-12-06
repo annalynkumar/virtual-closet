@@ -59,7 +59,7 @@ post "/insert_item", to: "items#create"
   # DELETE
   get("/delete_item/:path_id", { :controller => "items", :action => "destroy" })
 
-  #------------------------------
+#------------------------------
 
 devise_for :users, sign_out_via: :delete
 

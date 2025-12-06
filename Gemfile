@@ -3,7 +3,7 @@ source "https://rubygems.org"
 gem "carrierwave"
 gem "cloudinary"
 gem "image_processing", "~> 1.2"
-gem 'mini_magick'
+gem "mini_magick"
 
 
 

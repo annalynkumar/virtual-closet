@@ -12,4 +12,3 @@ class OutfitItem < ApplicationRecord
   belongs_to :item,   required: true, class_name: "Item",   foreign_key: "item_id"
   belongs_to :outfit, required: true, class_name: "Outfit", foreign_key: "outfit_id"
 end
-

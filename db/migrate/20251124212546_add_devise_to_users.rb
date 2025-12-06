@@ -10,7 +10,7 @@ class AddDeviseToUsers < ActiveRecord::Migration[6.0]
       # t.datetime :reset_password_sent_at
 
       ## Rememberable
-     #  t.datetime :remember_created_at
+      #  t.datetime :remember_created_at
 
       # Uncomment Trackable/Confirmable/Lockable if needed later
     end

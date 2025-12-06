@@ -6,28 +6,37 @@
       <label>Outfit Name:</label>
       <%= text_field_tag :outfit_name, nil, class: "form-control", placeholder: "e.g. Dinner Outfit" %>
     </div>
+<div style="margin-bottom: 1rem;">
+  <label>Occasion:</label>
+  <%= select_tag :occasion, options_for_select(["Casual", "Work", "Formal", "Date", "Workout", "Travel", "Lounge", "Party", "Event", "Other"]), class: "form-control" %>
+</div>
 
     <h3>Select Items from Your Closet:</h3>
 
-    <% @items.group_by(&:category).each do |category, items| %>
-      <h4><%= category.presence || "Uncategorized" %></h4>
+    <% @items
+        .group_by { |item| item.category.to_s.downcase.singularize.capitalize }
+        .each do |category, items| %>
+
+      <h4 style="margin-top: 1rem;"><%= category %></h4>
 
       <% items.each do |item| %>
-        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+          
           <%= check_box_tag "item_ids[]", item.id %>
-          <label style="margin-left: 0.5rem;">
-            <%= item.name %> - <%= item.color %>
-          </label>
+
+          <span><%= item.name %> - <%= item.color %></span>
 
           <% if item.image.attached? %>
-            <%= image_tag item.image.variant(resize_to_limit: [50, 50]), style: "margin-left: 1rem; border-radius: 4px;" %>
+            <%= image_tag item.image.variant(resize_to_limit: [60, 60]), 
+                style: "border-radius: 6px; border: 1px solid #ddd;" %>
           <% end %>
+
         </div>
       <% end %>
     <% end %>
 
     <div style="margin-top: 2rem;">
-      <%= submit_tag "Create Outfit", class: "btn btn-success", style: "width: 100%;" %>
+      <%= submit_tag "Create Outfit", class: "button-primary", style: "width: 100%;" %>
     </div>
   <% end %>
 </div>

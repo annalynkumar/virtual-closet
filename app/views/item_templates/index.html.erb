@@ -9,12 +9,7 @@
       <%= form.text_field :name, class: "form-control", placeholder: "White shirt" %>
     </div>
 
-    <div style="margin-bottom: 1rem;">
-      <label>Category:</label>
-      <%= form.select :category, ["Top", "Pants", "Shoes", "Outerwear", "Dress"], {}, class: "form-control" %>
-    </div>
-
-      <div style="margin-bottom: 1rem;">
+   <div style="margin-bottom: 1rem;">
       <label>Category:</label>
       <%= form.select :category,
                       ["Top", "Pant", "Skirt", "Dress", "Outerwear", "Shoes", "Accessories"],
@@ -38,9 +33,16 @@
             class: "form-control" %>
     </div>
 
+    <div style="margin-bottom: 1rem;">
+      <label>Upload Image:</label>
+      <%= form.file_field :image_file, class: "form-control" %>
+    </div>
+
     <%= form.submit "Create Item", class: "button-primary" %>
 
   <% end %>
+
+
 
 </div>
 

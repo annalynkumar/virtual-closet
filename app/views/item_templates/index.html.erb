@@ -1,90 +1,36 @@
-<h2>Add a New Item</h2>
+<h1>Add a New Item</h1>
 
-<form action="/items" method="post">
-  <%= csrf_meta_tags %>
+<div style="max-width: 700px; margin: 0 auto;">
 
-  <label>
-    Name:
-    <input type="text" name="query_name" placeholder="White shirt">
-  </label>
+  <%= form_with model: @item, url: "/insert_item", multipart: true do |form| %>
 
-  <label>
-    Category:
-    <input type="text" name="query_category" placeholder="Top, Pants, Shoes...">
-  </label>
-
-  <label>
-    Color:
-    <input type="text" name="query_color" placeholder="Blue, Black, Beige...">
-  </label>
-
-  <label>
-    Image URL:
-    <input type="text" name="query_image_url" placeholder="https://example.com/shirt.png">
-  </label>
-
-  <input type="hidden" name="query_user_id" value="<%= current_user.id %>">
-
-  <button class="button-primary">Add Item</button>
-</form>
-
-<hr>
-
-<article>
-  <header>
-    <h2>
-      Add a new item
-    </h2>
-  </header>
-
-  <form action="/insert_item" method="post">
-    <div>
-      <label for="name_box">
-        Name
-      </label>
-
-      <input type="text" id="name_box" name="query_name">
+    <div style="margin-bottom: 1rem;">
+      <label>Name:</label>
+      <%= form.text_field :name, class: "form-control", placeholder: "White shirt" %>
     </div>
 
-    <div>
-      <label for="category_box">
-        Category
-      </label>
-
-      <input type="text" id="category_box" name="query_category">
+    <div style="margin-bottom: 1rem;">
+      <label>Category:</label>
+      <%= form.select :category, ["Top", "Pants", "Shoes", "Outerwear", "Dress"], {}, class: "form-control" %>
     </div>
 
-    <div>
-      <label for="color_box">
-        Color
-      </label>
-
-      <input type="text" id="color_box" name="query_color">
+    <div style="margin-bottom: 1rem;">
+      <label>Color:</label>
+      <%= form.select :color, ["White", "Black", "Blue", "Beige", "Red", "Green"], {}, class: "form-control" %>
     </div>
 
-    <div>
-      <label for="image_url_box">
-        Image url
-      </label>
-
-      <input type="text" id="image_url_box" name="query_image_url">
+    <div style="margin-bottom: 1rem;">
+      <label>Upload Image:</label>
+      <%= form.file_field :image_file, class: "form-control" %>
     </div>
 
-    <div>
-      <label for="user_id_box">
-        User
-      </label>
+    <%= form.submit "Create Item", class: "button-primary" %>
 
-      <input type="text" id="user_id_box" name="query_user_id">
-    </div>
+  <% end %>
 
-    <button type="submit">
-      Create item
-    </button>
-  </form>
-</article>
+</div>
 
-<hr>
+
 
 <article>
   <ul>

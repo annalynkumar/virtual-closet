@@ -1,124 +1,31 @@
-<h1 style="margin-bottom: 1.5rem;">Add a New Item</h1>
+<h1>Add a New Item</h1>
 
-<div style="max-width: 700px; margin: auto;">
+<div style="max-width: 700px; margin: 0 auto;">
 
-  <% if @the_item && @the_item.errors.any? %>
-    <div style="background:#ffefef; border:1px solid #e0b4b4; padding:1rem; border-radius:8px; margin-bottom:1rem;">
-      <strong>Please fix the following errors:</strong>
-      <ul>
-        <% @the_item.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= form_with model: @item, url: "/insert_item", multipart: true do |form| %>
 
-  
-  <%= form_with url: "/insert_item", method: :post, multipart: true, local: true do |form| %>
-
-    <!-- Name -->
-    <div>
+    <div style="margin-bottom: 1rem;">
       <label>Name:</label>
-      <%= form.text_field :query_name, class: "form-input" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "White shirt" %>
     </div>
 
-    <!-- Category Dropdown -->
-    <div>
+    <div style="margin-bottom: 1rem;">
       <label>Category:</label>
-      <select name="query_category" class="form-input">
-        <option value="">Select a category</option>
-        <option>Tops</option>
-        <option>Bottoms</option>
-        <option>Shoes</option>
-        <option>Outerwear</option>
-        <option>Accessories</option>
-        <option>Other</option>
-      </select>
+      <%= form.select :category, ["Top", "Pants", "Shoes", "Outerwear", "Dress"], {}, class: "form-control" %>
     </div>
 
-    <!-- Color Dropdown -->
-    <div>
+    <div style="margin-bottom: 1rem;">
       <label>Color:</label>
-      <select name="query_color" class="form-input">
-        <option value="">Choose a color</option>
-        <option>Black</option>
-        <option>White</option>
-        <option>Gray</option>
-        <option>Navy</option>
-        <option>Brown</option>
-        <option>Tan</option>
-        <option>Green</option>
-        <option>Red</option>
-        <option>Blue</option>
-        <option>Yellow</option>
-        <option>Pink</option>
-        <option>Purple</option>
-      </select>
+      <%= form.select :color, ["White", "Black", "Blue", "Beige", "Red", "Green"], {}, class: "form-control" %>
     </div>
 
-    <!-- Image Upload -->
-    <div>
+    <div style="margin-bottom: 1rem;">
       <label>Upload Image:</label>
-      <%= form.file_field :image_file, accept: "image/*", class: "form-input", id: "upload" %>
+      <%= form.file_field :image_file, class: "form-control" %>
     </div>
 
-    <!-- Preview -->
-    <div style="text-align:center;">
-      <img id="preview" src="" style="max-width: 200px; display:none; margin-top:1rem; border-radius:10px;">
-    </div>
-
-    <%= hidden_field_tag :query_user_id, current_user.id %>
-
-    <button type="submit" class="green-button">Create Item</button>
+    <%= form.submit "Create Item", class: "button-primary" %>
 
   <% end %>
+
 </div>
-
-
-<!-- IMAGE PREVIEW SCRIPT -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const upload = document.getElementById("upload");
-  const preview = document.getElementById("preview");
-
-  upload.addEventListener("change", (event) => {
-    const file = event.target.files[0];
-    if (!file) {
-      preview.style.display = "none";
-      return;
-    }
-    preview.src = URL.createObjectURL(file);
-    preview.style.display = "block";
-  });
-});
-</script>
-
-
-<style>
-.form-input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  background: #fafafa;
-  font-size: 1rem;
-}
-
-.green-button {
-  background: #2f5d4a;
-  color: white;
-  padding: 14px;
-  border-radius: 12px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  border: none;
-  width: 100%;
-  cursor: pointer;
-  transition: 0.2s;
-  margin-top: 1rem;
-}
-
-.green-button:hover {
-  background: #264c3d;
-}
-</style>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # Routes for the Outfit item resource:
 
   # CREATE
+  get("/outfit_items/new", { :controller => "outfit_items", :action => "new" })
   post("/insert_outfit_item", { :controller => "outfit_items", :action => "create" })
 
   get "/items/new", to: "items#new"

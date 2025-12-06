@@ -23,11 +23,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         class User < ApplicationRecord
-  # Devise modules are already here
-
   has_many :items, class_name: "Item", foreign_key: "user_id", dependent: :destroy
   has_many :outfits, class_name: "Outfit", foreign_key: "user_id", dependent: :destroy
-end
-
 end

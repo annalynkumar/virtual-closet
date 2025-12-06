@@ -1,0 +1,27 @@
+<h1>Create a New Outfit</h1>
+
+<div style="max-width: 700px; margin: 0 auto;">
+  <%= form_with url: "/insert_outfit_item", method: :post do %>
+    <div style="margin-bottom: 1rem;">
+      <label>Outfit Name:</label>
+      <%= text_field_tag :outfit_name, nil, placeholder: "e.g. Dinner Outfit", class: "form-control" %>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+      <h3>Select Items from Your Closet:</h3>
+      <% @items = current_user.items.order(:category) %>
+      <% grouped = @items.group_by(&:category) %>
+      <% grouped.each do |category, items| %>
+        <h4><%= category %></h4>
+        <% items.each do |item| %>
+          <div style="margin-left: 1rem;">
+            <%= check_box_tag "item_ids[]", item.id %>
+            <%= item.name %> - <%= item.color %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <%= submit_tag "Create Outfit", class: "button-primary" %>
+  <% end %>
+</div>

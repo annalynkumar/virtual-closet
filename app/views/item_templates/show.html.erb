@@ -1,8 +1,23 @@
-<h1><%= @outfit.name %></h1>
+<div style="max-width: 700px; margin: 0 auto;">
+  <h1><%= @the_item.name %></h1>
 
-<h3>Items in this outfit:</h3>
-<ul>
-  <% @outfit.items.each do |item| %>
-    <li><%= item.name %> - <%= item.category %>, <%= item.color %></li>
+  <% if @the_item.image.attached? %>
+    <%= image_tag @the_item.image, style: "max-width: 100%; height: auto;" %>
   <% end %>
-</ul>
+
+  <dl>
+    <dt>Category:</dt>
+    <dd><%= @the_item.category %></dd>
+
+    <dt>Color:</dt>
+    <dd><%= @the_item.color %></dd>
+
+    <dt>Created at:</dt>
+    <dd><%= time_ago_in_words(@the_item.created_at) %> ago</dd>
+  </dl>
+
+  <div style="margin-top: 2rem;">
+    <%= link_to "Back to Items", "/items", class: "button-secondary" %>
+    <%= link_to "Delete", "/delete_item/#{@the_item.id}", class: "button-danger" %>
+  </div>
+</div>

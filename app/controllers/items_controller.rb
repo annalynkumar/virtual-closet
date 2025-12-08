@@ -19,13 +19,17 @@ class ItemsController < ApplicationController
 end
 
 
-  def show
-    the_id = params.fetch("path_id")
-    matching_items = Item.where(id: the_id)
-    @the_item = matching_items.at(0)
-
-    render template: "item_templates/show"
+def show
+  item_name = params[:id]&.tr('-', ' ')
+  if item_name.present?
+    @the_item = current_user.items.find_by(name: item_name)
   end
+
+  unless @the_item
+    redirect_to "/", alert: "Item not found"
+  end
+end
+
 
   def create
     the_item = Item.new

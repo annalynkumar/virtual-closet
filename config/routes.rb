@@ -49,8 +49,7 @@ post "/insert_item", to: "items#create"
 
   # READ
   get("/items", { :controller => "items", :action => "index" })
-
-  get("/items/:path_id", { :controller => "items", :action => "show" })
+get("/items/:path_id", { :controller => "items", :action => "show" })
 
   # UPDATE
 

@@ -12,114 +12,59 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-
-    <!-- 👇 DEFINE CUSTOM COLORS *BEFORE* PICO -->
-  <style>
-    :root {
-      /* Your brand colors */
-      --pico-primary: #4f7f6a;
-      --pico-primary-hover: #3e6655;
-      --pico-primary-focus: #3e6655;
-      --pico-primary-inverse: #ffffff;
-      --pico-background-color: #f6f5f3;
-    }
-
-   
-  </style>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.conditional.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css">
-
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-
-  <body class="pico" style="background-color: #f6f5f3;">
-
-    <header>
-  <div class="container-two-thirds">
-    <nav>
-    
-      <ul>
-        <li>
-          <a href="/">
-            <strong>
-              My Virtual Closet
-            </strong>
-          </a>
-        </li>
-        <% if current_user == nil %>
-          <li>
-            <a href="/users/sign_in">Log in</a>
-          </li>
-          <li>
-            <a href="/users/sign_up">Sign up</a>
-          </li>
-        <% else%>
-          <li>
-            <a href="/users/edit">Edit profile</a>
-          </li>
-          <li>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
-
-          </li>
-        <% end %>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-    <main>
-      <div class="container-two-thirds">
-        <div class="text-success">
-          <%= notice %>
-        </div>
-
-        <div class="text-danger">
-          <%= alert %>
-        </div>
-        <%= yield %>
-      </div>
-    </main>
-
-
-  </body>
-</html>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.conditional.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css">
-
-    <!-- 👇 ADD THIS BLOCK HERE -->
+    <!-- Custom Colors BEFORE Pico -->
     <style>
-
       :root {
         --pico-primary: #4f7f6a;
         --pico-primary-hover: #3e6655;
         --pico-primary-focus: #3e6655;
         --pico-primary-inverse: #ffffff;
+        --pico-background-color: #f6f5f3;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.conditional.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css">
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <!-- Custom Styling -->
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
       }
 
       body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
         background-color: #f6f5f3;
       }
 
-      
+      .page-wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      main {
+        flex: 1;
+      }
+
       label abbr {
         display: none;
       }
 
-      
       a {
         color: #4f7f6a;
       }
+
       a:hover {
         color: #3e6655;
       }
@@ -130,6 +75,36 @@
         border-color: #4f7f6a !important;
       }
     </style>
+  </head>
 
+  <body class="pico">
+    <div class="page-wrapper">
+      <header>
+        <div class="container-two-thirds">
+          <nav>
+            <ul>
+              <li>
+                <a href="/"><strong>My Virtual Closet</strong></a>
+              </li>
+              <% if current_user.nil? %>
+                <li><a href="/users/sign_in">Log in</a></li>
+                <li><a href="/users/sign_up">Sign up</a></li>
+              <% else %>
+                <li><a href="/users/edit">Edit profile</a></li>
+                <li><%= link_to "Log out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %></li>
+              <% end %>
+            </ul>
+          </nav>
+        </div>
+      </header>
 
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+      <main>
+        <div class="container-two-thirds">
+          <div class="text-success"><%= notice %></div>
+          <div class="text-danger"><%= alert %></div>
+          <%= yield %>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

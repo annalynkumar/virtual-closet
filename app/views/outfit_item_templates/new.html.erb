@@ -1,42 +1,51 @@
-<h1>Create a New Outfit</h1>
+<h1 style="text-align: center; margin-bottom: 2rem;">Create a New Outfit</h1>
 
-<div style="max-width: 700px; margin: 0 auto;">
+<div style="max-width: 700px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+
   <%= form_with url: "/insert_outfit_item", method: :post do %>
-    <div style="margin-bottom: 1rem;">
-      <label>Outfit Name:</label>
-      <%= text_field_tag :outfit_name, nil, class: "form-control", placeholder: "e.g. Dinner Outfit" %>
+
+    <!-- Outfit Name -->
+    <div style="margin-bottom: 1.5rem;">
+      <label style="font-weight: 600;">Outfit Name:</label><br>
+      <%= text_field_tag :outfit_name, nil, class: "form-control", placeholder: "e.g. Dinner Outfit", style: "width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" %>
     </div>
-<div style="margin-bottom: 1rem;">
-  <label>Occasion:</label>
-  <%= select_tag :occasion, options_for_select(["Casual", "Work", "Formal", "Date", "Workout", "Travel", "Lounge", "Party", "Event", "Other"]), class: "form-control" %>
-</div>
 
-    <h3>Select Items from Your Closet:</h3>
+    <!-- Occasion Dropdown -->
+    <div style="margin-bottom: 1.5rem;">
+      <label style="font-weight: 600;">Occasion:</label><br>
+      <%= select_tag :occasion, options_for_select(["Casual", "Work", "Formal", "Date", "Workout", "Travel", "Lounge", "Party", "Event", "Other"]),
+            class: "form-control",
+            style: "width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" %>
 
-    <% @items
-        .group_by { |item| item.category.to_s.downcase.singularize.capitalize }
-        .each do |category, items| %>
+            
+    </div>
+    
 
-      <h4 style="margin-top: 1rem;"><%= category %></h4>
+    <!-- Closet Item Selection -->
+    <h2 style="margin: 2rem 0 1rem; font-size: 1.2rem;">Select Items from Your Closet:</h2>
 
-      <% items.each do |item| %>
-        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
-          
-          <%= check_box_tag "item_ids[]", item.id %>
+    <% @items.group_by { |item| item.category.to_s.downcase.pluralize.capitalize }.each do |category, items| %>
+      <div style="margin-top: 1.5rem;">
+        <h3 style="margin-bottom: 1rem; font-size: 1.1rem; color: #333;"><%= category %></h3>
 
-          <span><%= item.name %> - <%= item.color %></span>
+        <% items.each do |item| %>
+          <div style="display: flex; align-items: center; margin-bottom: 12px;">
+            <%= check_box_tag "item_ids[]", item.id, false, style: "margin-right: 12px;" %>
 
-          <% if item.image.attached? %>
-            <%= image_tag item.image.variant(resize_to_limit: [60, 60]), 
-                style: "border-radius: 6px; border: 1px solid #ddd;" %>
-          <% end %>
+            <span style="flex: 1;"><%= item.name %> - <%= item.color %></span>
 
-        </div>
-      <% end %>
+            <% if item.image.attached? %>
+              <%= image_tag item.image.variant(resize_to_limit: [50, 50]), style: "border-radius: 6px; border: 1px solid #ddd; margin-left: 10px; width: 50px; height: 50px; object-fit: cover;" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
 
-    <div style="margin-top: 2rem;">
-      <%= submit_tag "Create Outfit", class: "button-primary", style: "width: 100%;" %>
+    <!-- Submit Button -->
+    <div style="margin-top: 2.5rem;">
+      <%= submit_tag "Create Outfit", class: "button-primary", style: "width: 100%; background-color: #2e6f57; color: white; padding: 12px; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer;" %>
     </div>
+
   <% end %>
 </div>

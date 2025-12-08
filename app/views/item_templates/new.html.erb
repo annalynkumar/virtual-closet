@@ -44,14 +44,9 @@
 
 </div>
 <article>
-  <ul>
-    <% @list_of_items.each do |an_item| %>
-  <li>
-    <a href="/items/<%= an_item.name %>">
-      <%= an_item.name %>
-    </a>
-  </li>
-<% end %>
 
-  </ul>
+<div style="margin-top: 2rem; text-align: center;">
+  <%= button_to "Take me to my closet", items_path, method: :get, class: "btn btn-success", form_class: "d-inline" %>
+</div>
+
 </article>

@@ -20,15 +20,16 @@ end
 
 
 def show
-  item_name = params[:id]&.tr('-', ' ')
-  if item_name.present?
-    @the_item = current_user.items.find_by(name: item_name)
-  end
-
-  unless @the_item
-    redirect_to "/", alert: "Item not found"
+  name_slug = params[:id]
+  if name_slug.present?
+    name = name_slug.tr('-', ' ')
+    @the_item = current_user.items.find_by!(name: name)
+  else
+    redirect_to root_path, alert: "No item name provided"
   end
 end
+
+
 
 
   def create

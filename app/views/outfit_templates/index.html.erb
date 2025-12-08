@@ -1,41 +1,37 @@
-<h2>My Items</h2>
+<h2 style="margin-bottom: 1.5rem;">My Items</h2>
 
 <% @items_grouped_by_category.each do |category, items| %>
-  <h3 style="margin-top: 2rem;"><%= category %></h3>
+  <h3 style="margin-top: 2rem; font-weight: bold;"><%= category.pluralize.capitalize %></h3>
 
-  <div id="carousel-<%= category.parameterize %>" style="display: flex; overflow-x: auto; gap: 20px; scroll-snap-type: x mandatory; padding: 10px 0;">
+  <div id="carousel-<%= category.parameterize %>" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px 0; scroll-snap-type: x mandatory;">
     <% items.each do |item| %>
-      <div style="flex: 0 0 auto; scroll-snap-align: start; width: 200px; text-align: center;">
-        <%= link_to item_path(item), style: "text-decoration: none; color: inherit;" do %>
-          <% if item.image.attached? %>
-            <%= image_tag item.image, style: "width: 80%; height: 150px; object-fit: cover; border-radius: 8px; border: 1px solid #ccc;" %>
-          <% else %>
-            <div style="width: 80%; height: 150px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #aaa; border-radius: 8px; border: 1px solid #ccc;">
-              No Image
-            </div>
-          <% end %>
-          <h4><%= item.name %></h4>
+      <div style="flex: 0 0 auto; scroll-snap-align: start; width: 140px; text-align: center; background: #fff; padding: 10px; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); transition: transform 0.2s; cursor: pointer;"
+           onclick="window.location='<%= item_path(item) %>'">
+        <% if item.image.attached? %>
+          <%= image_tag item.image, style: "width: 100%; height: 130px; object-fit: cover; border-radius: 6px;" %>
+        <% else %>
+          <div style="width: 100%; height: 130px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #aaa; border-radius: 6px;">
+            No Image
+          </div>
         <% end %>
+        <h4 style="margin-top: 8px; font-size: 0.9rem;"><%= item.name %></h4>
       </div>
     <% end %>
   </div>
 
   <div style="display: flex; justify-content: space-between; margin: 8px 0;">
-  <button 
-    onclick="document.getElementById('carousel-<%= category.parameterize %>').scrollBy({ left: -220, behavior: 'smooth' })" 
-    style="font-size: 24px; padding: 4px 8px; border-radius: 4px; border: 1px solid #ccc; background: #f8f8f8;">
-    ⬅️
-  </button>
-  <button 
-    onclick="document.getElementById('carousel-<%= category.parameterize %>').scrollBy({ left: 220, behavior: 'smooth' })" 
-    style="font-size: 24px; padding: 4px 8px; border-radius: 4px; border: 1px solid #ccc; background: #f8f8f8;">
-    ➡️
-  </button>
-</div>
-
+    <button 
+      onclick="document.getElementById('carousel-<%= category.parameterize %>').scrollBy({ left: -220, behavior: 'smooth' })" 
+      style="font-size: 20px; padding: 4px 8px; border-radius: 4px; border: 1px solid #ccc; background: #f8f8f8;">
+      ⬅️
+    </button>
+    <button 
+      onclick="document.getElementById('carousel-<%= category.parameterize %>').scrollBy({ left: 220, behavior: 'smooth' })" 
+      style="font-size: 20px; padding: 4px 8px; border-radius: 4px; border: 1px solid #ccc; background: #f8f8f8;">
+      ➡️
+    </button>
+  </div>
 <% end %>
-
- 
 
 <hr class="my-5">
 
@@ -43,16 +39,17 @@
 
 <div style="display: flex; overflow-x: auto; gap: 20px; scroll-snap-type: x mandatory; padding: 10px 0;">
   <% @list_of_outfits.each do |outfit| %>
-    <div style="min-width: 300px; flex: 0 0 auto; scroll-snap-align: start; border: 1px solid #ddd; border-radius: 8px; padding: 16px; background: #fafafa;">
+    <div style="min-width: 300px; flex: 0 0 auto; scroll-snap-align: start; border: 1px solid #ddd; border-radius: 8px; padding: 16px; background: #fafafa; box-shadow: 0 1px 4px rgba(0,0,0,0.05);">
       <h4><%= outfit.name %></h4>
 
       <p><strong>Occasion:</strong> <%= outfit.occasion.presence || "—" %></p>
       <p><strong>Season:</strong> <%= outfit.season.presence || "—" %></p>
       <p><strong>Items:</strong></p>
-      <ul>
+      <ul style="padding-left: 20px;">
         <% outfit.items.each do |item| %>
           <li><%= item.name %></li>
         <% end %>
+        
       </ul>
     </div>
   <% end %>

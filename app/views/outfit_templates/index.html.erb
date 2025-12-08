@@ -59,7 +59,6 @@
       <h4><%= outfit.name %></h4>
 
       <p><strong>Occasion:</strong> <%= outfit.occasion.presence || "—" %></p>
-      <p><strong>Season:</strong> <%= outfit.season.presence || "—" %></p>
       <p><strong>Items:</strong></p>
       <ul style="padding-left: 20px;">
         <% outfit.items.each do |item| %>

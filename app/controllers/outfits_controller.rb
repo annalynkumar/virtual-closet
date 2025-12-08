@@ -3,7 +3,7 @@ class OutfitsController < ApplicationController
   @list_of_outfits = Outfit.order(created_at: :desc)
 @items_grouped_by_category = Item.order(:created_at).group_by(&:category)
 
-
+  @outfits = Outfit.all
 
   render({ :template => "outfit_templates/index" })
 end

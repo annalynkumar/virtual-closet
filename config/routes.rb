@@ -53,6 +53,10 @@ get("/items/:path_id", { :controller => "items", :action => "show" })
 get "/items/:id" => "items#show", as: :item
 
 resources :items
+# config/routes.rb
+resources :outfits, only: [:index, :create]
+
+
 
   # UPDATE
 

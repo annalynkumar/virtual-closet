@@ -16,29 +16,41 @@
       <%= select_tag :occasion, options_for_select(["Casual", "Work", "Formal", "Date", "Workout", "Travel", "Lounge", "Party", "Event", "Other"]),
             class: "form-control",
             style: "width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" %>
-
-            
     </div>
-    
 
     <!-- Closet Item Selection -->
     <h2 style="margin: 2rem 0 1rem; font-size: 1.2rem;">Select Items from Your Closet:</h2>
 
-    <% @items.group_by { |item| item.category.to_s.downcase.pluralize.capitalize }.each do |category, items| %>
-      <div style="margin-top: 1.5rem;">
-        <h3 style="margin-bottom: 1rem; font-size: 1.1rem; color: #333;"><%= category %></h3>
+    <% category_labels = {
+      "top" => "Tops",
+      "pant" => "Pants",
+      "shoe" => "Shoes",
+      "accessory" => "Accessories"
+    } %>
 
-        <% items.each do |item| %>
-          <div style="display: flex; align-items: center; margin-bottom: 12px;">
-            <%= check_box_tag "item_ids[]", item.id, false, style: "margin-right: 12px;" %>
+    <% @items.group_by { |item| category_labels[item.category.to_s.downcase] || item.category.to_s.titleize }.each do |category, items| %>
+      <div style="margin-top: 2rem;">
+        <h3 style="font-size: 1.1rem; color: #333; margin-bottom: 1rem;"><%= category %></h3>
 
-            <span style="flex: 1;"><%= item.name %> - <%= item.color %></span>
+        <div style="display: flex; gap: 24px; overflow-x: auto; padding-bottom: 1rem;">
+          <% items.each do |item| %>
+            <div class="item-select" data-checkbox-id="checkbox_<%= item.id %>" style="flex: 0 0 auto; width: 140px; text-align: center; cursor: pointer;">
+              <%= check_box_tag "item_ids[]", item.id, false, id: "checkbox_#{item.id}", style: "display: none;" %>
 
-            <% if item.image.attached? %>
-              <%= image_tag item.image.variant(resize_to_limit: [50, 50]), style: "border-radius: 6px; border: 1px solid #ddd; margin-left: 10px; width: 50px; height: 50px; object-fit: cover;" %>
-            <% end %>
-          </div>
-        <% end %>
+              <% if item.image.attached? %>
+                <%= image_tag item.image.variant(resize_to_limit: [140, 140]),
+                      class: "selectable-image",
+                      style: "width: 140px; height: 140px; object-fit: cover; border-radius: 10px; border: 2px solid #ccc; margin-bottom: 8px;" %>
+              <% else %>
+                <div class="selectable-image" style="width: 140px; height: 140px; background-color: #eee; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #999; font-size: 0.85rem; margin-bottom: 8px; border: 2px solid #ccc;">
+                  No Image
+                </div>
+              <% end %>
+
+              <div style="font-size: 0.95rem; color: #333;"><%= item.name %></div>
+            </div>
+          <% end %>
+        </div>
       </div>
     <% end %>
 
@@ -49,3 +61,22 @@
 
   <% end %>
 </div>
+
+<!-- Selection Highlight Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".item-select").forEach(function (block) {
+      block.addEventListener("click", function () {
+        const checkboxId = block.getAttribute("data-checkbox-id");
+        const checkbox = document.getElementById(checkboxId);
+
+        if (checkbox) {
+          checkbox.checked = !checkbox.checked;
+          block.querySelector(".selectable-image").style.border = checkbox.checked
+            ? "3px solid #2e6f57"
+            : "2px solid #ccc";
+        }
+      });
+    });
+  });
+</script>

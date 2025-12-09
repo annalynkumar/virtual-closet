@@ -20,15 +20,11 @@ end
 
 
 def show
-  name_slug = params[:id]
-  if name_slug.present?
-    name = name_slug.tr('-', ' ')
-    @the_item = current_user.items.find_by!(name: name)
-  else
-    redirect_to root_path, alert: "No item name provided"
+  @item = Item.find_by(id: params[:id])
+  unless @item
+    redirect_to items_path, alert: "Item not found."
   end
 end
-
 
 
 
@@ -54,21 +50,26 @@ end
 
 
   def update
-    the_id = params.fetch("path_id")
-    the_item = Item.where({ :id => the_id }).at(0)
+  @item = current_user.items.find(params[:id])
 
-    the_item.name = params.fetch("query_name")
-    the_item.category = params.fetch("query_category")
-    the_item.color = params.fetch("query_color")
-    the_item.user_id = params.fetch("query_user_id")
+  @item.name = params[:item][:name]
+  @item.category = params[:item][:category]
+  @item.color = params[:item][:color]
 
-    if the_item.valid?
-      the_item.save
-      redirect_to("/items/#{the_item.id}", { :notice => "Item updated successfully." } )
-    else
-      redirect_to("/items/#{the_item.id}", { :alert => the_item.errors.full_messages.to_sentence })
-    end
+  if params[:item][:image_file].present?
+    @item.image.attach(params[:item][:image_file])
   end
+
+  if @item.save
+    redirect_to item_path(@item), notice: "Item updated!"
+  else
+    render :edit
+  end
+end
+
+def edit
+  @item = Item.find(params[:id])
+end
 
   def destroy
     the_id = params.fetch("path_id")

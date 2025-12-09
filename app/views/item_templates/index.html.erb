@@ -46,6 +46,20 @@
 
   <% end %>
 
+  <hr style="margin: 2rem 0;">
+
+  <% @list_of_items.each do |item| %>
+    <div class="item" style="margin-bottom: 1.5rem; border: 1px solid #eee; border-radius: 8px; padding: 1rem;">
+      <%= link_to item_path(item), style: "text-decoration: none; color: inherit;" do %>
+        <h3 style="margin-bottom: 0.5rem;"><%= item.name %></h3>
+        <% if item.image.attached? %>
+          <%= image_tag item.image, style: "max-width: 200px; display: block; margin-bottom: 0.5rem;" %>
+        <% end %>
+        <p><strong>Category:</strong> <%= item.category %></p>
+        <p><strong>Color:</strong> <%= item.color %></p>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 <div style="max-width: 600px; margin: 2rem auto 0; text-align: center;">

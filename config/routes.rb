@@ -55,6 +55,8 @@ get "/items/:id" => "items#show", as: :item
 resources :items
 # config/routes.rb
 resources :outfits, only: [:index, :create]
+resources :items, only: [:index, :show]
+
 
 
 

@@ -5,6 +5,13 @@
   <%= link_to "➕ Add Item", new_item_path, class: "button-primary", style: "padding: 10px 16px; font-size: 1rem; border-radius: 6px;" %>
 </div>
 
+<h2>Filter by Color Group</h2>
+
+<%= form_with url: closet_path, method: :get, local: true do %>
+  <label for="color_group">Select a color group:</label>
+  <%= select_tag :color_group, options_for_select(@color_groups, @selected_color_group), include_blank: true %>
+  <%= submit_tag "Filter", class: "btn" %>
+<% end %>
 
 <% @items_grouped_by_category.each do |category, items| %>
   <h3 style="margin-top: 2rem; font-weight: bold;"><%= category.capitalize %></h3>

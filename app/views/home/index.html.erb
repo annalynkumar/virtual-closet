@@ -1,104 +1,55 @@
 <style>
-  html, body {
-    height: 100%;
-    margin: 0;
-  }
+  .welcome-card {
+  background: white;
+  padding: 2rem;
+  margin: 2rem auto;
+  border-radius: 16px;
+  max-width: 600px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
 
-  body {
-    min-height: 100vh;
-    background: #f7f3ef;
-  }
+.welcome-card h2 {
+  font-size: 2rem;
+  color: #2f5d4a;
+  margin-bottom: 0.5rem;
+}
 
-  main {
-    min-height: calc(100vh - 80px);
-    background: #f7f3ef;
-  }
+.welcome-card p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
 
-  .page-content {
-    min-height: 100vh;
-    padding-bottom: 6rem;
-  }
+.home-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
 
-  .hero {
-    margin-bottom: 2rem;
-  }
+.home-button {
+  background: #2f5d4a;
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  width: 100%;
+  max-width: 200px;
+  text-align: center; /* ← Horizontally center text */
+  display: flex;      /* ← Make button a flex container */
+  justify-content: center; /* ← Center text horizontally */
+  align-items: center;     /* ← Center text vertically */
+  height: 80px;       /* Optional: consistent height for all buttons */
+  transition: background 0.2s ease;
+}
 
-  .hero h1 {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
-  }
 
-  .hero h3 {
-    font-weight: 400;
-    line-height: 1.5;
-  }
+.home-button:hover {
+  background: #244a3b;
+}
 
-  .center-text {
-    text-align: center;
-  }
-
-  .how-it-works-wrapper {
-    margin-top: 3rem;
-    border: 2px solid #2f5d4a;
-    border-radius: 22px;
-    padding: 2rem;
-    background: #f7f3ef;
-  }
-
-  .how-it-works-title {
-    text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 2rem;
-    font-weight: 600;
-  }
-
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-
-  .step-box {
-    background: #7d9a6bff;
-    border-radius: 18px;
-    padding: 1rem;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  }
-
-  .step-box,
-  .step-box * {
-    color: #f8f3ec !important;
-  }
-
-  .step-box strong {
-    font-size: 1.2rem;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .step-box p {
-    line-height: 1.6;
-  }
-
-  .action-buttons {
-    text-align: center;
-    margin-top: 2rem;
-  }
-
-  .button-primary {
-    background: #2f5d4a;
-    color: white;
-    padding: 14px 28px;
-    border-radius: 10px;
-    font-weight: 600;
-    text-decoration: none;
-    margin: 0 10px;
-    display: inline-block;
-  }
-
-  .button-primary:hover {
-    background: #244a3b;
-  }
 </style>
 
 <div class="page-content">
@@ -115,42 +66,16 @@
 <% end %>
 
 
-  <% if user_signed_in? %>
-    <p class="center-text">
-      Welcome, <%= current_user.name.presence || current_user.email %>!
-    </p>
+ <% if user_signed_in? %>
+  <div class="welcome-card">
+    <h2>Welcome, <%= current_user.name.presence || current_user.email %>!</h2>
+    <p>What would you like to do today?</p>
 
-    <div class="action-buttons">
-      <%= link_to "Add an Item", new_item_path, class: "button-primary" %>
-      <%= link_to "Create an Outfit", "/outfit_items/new", class: "button-primary" %>
-      <%= link_to "View My Closet", "/closet", class: "button-primary" %>
-      <%= link_to "View My Outfits", outfits_path, class: "button-primary" %>
-
-
+    <div class="home-buttons-grid">
+      <%= link_to "Add an Item", new_item_path, class: "home-button" %>
+      <%= link_to "Create an Outfit", "/outfit_items/new", class: "home-button" %>
+      <%= link_to "View My Closet", "/closet", class: "home-button" %>
+      <%= link_to "View My Outfits", outfits_path, class: "home-button" %>
     </div>
-  <% end %>
-
-  <% unless user_signed_in? %>
-    <div class="how-it-works-wrapper">
-      <div class="how-it-works-title">How It Works</div>
-
-      <div class="steps">
-        <div class="step-box">
-          <strong>1. Upload Your Clothes</strong>
-          <p>Add photos and details of items in your closet.</p>
-        </div>
-
-        <div class="step-box">
-          <strong>2. Create Outfits</strong>
-          <p>Mix and match pieces to build complete looks.</p>
-        </div>
-
-        <div class="step-box">
-          <strong>3. Plan Your Style</strong>
-          <p>Save outfits for events, seasons, or daily wear.</p>
-        </div>
-      </div>
-    </div>
-  <% end %>
-
-</div>
+  </div>
+<% end %>

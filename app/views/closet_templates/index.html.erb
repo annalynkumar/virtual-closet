@@ -1,7 +1,13 @@
-<h2 style="margin-bottom: 1.5rem;">My Closet</h2>
+
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+  <h2 style="margin-bottom: 1.5rem;">My Closet</h2>
+  <%= link_to "➕ Add Item", new_item_path, class: "button-primary", style: "padding: 10px 16px; font-size: 1rem; border-radius: 6px;" %>
+</div>
+
 
 <% @items_grouped_by_category.each do |category, items| %>
-  <h3 style="margin-top: 2rem; font-weight: bold;"><%= category.pluralize.capitalize %></h3>
+  <h3 style="margin-top: 2rem; font-weight: bold;"><%= category.capitalize %></h3>
 
   <div style="
     display: grid;

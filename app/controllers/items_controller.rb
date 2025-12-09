@@ -80,3 +80,8 @@ end
     redirect_to("/items", { :notice => "Item deleted successfully." } )
   end
 end
+
+def item_params
+  params.require(:item).permit(:name, :category)
+end 
+

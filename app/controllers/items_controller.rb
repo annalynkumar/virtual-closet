@@ -21,10 +21,16 @@ end
 
 def show
   @item = Item.find_by(id: params[:id])
-  unless @item
+
+  if @item.nil?
     redirect_to items_path, alert: "Item not found."
+  elsif @item.user_id != current_user.id
+    redirect_to items_path, alert: "You do not have access to this item."
+  else
+    render template: "item_templates/show"
   end
 end
+
 
 
 
@@ -34,6 +40,8 @@ end
     the_item.category = params[:item][:category]
     the_item.color    = params[:item][:color]
     the_item.user_id  = current_user.id
+    @item = current_user.items.new(item_params)
+
 
     # Attach uploaded image (if you're using ActiveStorage)
     if params[:item][:image_file].present?
@@ -68,19 +76,21 @@ end
 end
 
 def edit
-  @item = Item.find(params[:id])
-end
-
-  def destroy
-    the_id = params.fetch("path_id")
-    the_item = Item.where({ :id => the_id }).at(0)
-
-    the_item.destroy
-
-    redirect_to("/items", { :notice => "Item deleted successfully." } )
+  @item = current_user.items.find_by(id: params[:id])
+  unless @item
+    redirect_to items_path, alert: "Item not found."
   end
 end
 
-def item_params
-  params.require(:item).permit(:name, :category)
+
+ def destroy
+  @item = current_user.items.find_by(id: params[:path_id])
+  if @item
+    @item.destroy
+    redirect_to("/items", notice: "Item deleted successfully.")
+  else
+    redirect_to("/items", alert: "Item not found.")
+  end
+end
+
 end 

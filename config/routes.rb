@@ -59,7 +59,9 @@ resources :items, only: [:index, :show]
 
 
 
-get "/closet", to: "closet#index"
+get "/closet" => "closet#index"
+
+
 
 
   # UPDATE

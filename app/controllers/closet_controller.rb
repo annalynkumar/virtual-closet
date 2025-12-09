@@ -1,4 +1,4 @@
-class ClosetTemplatesController < ApplicationController
+class ClosetController < ApplicationController
   def index
     @item = Item.new
 

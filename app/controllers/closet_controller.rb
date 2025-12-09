@@ -23,16 +23,16 @@ class ClosetController < ApplicationController
   "Red", "Orange", "Yellow", "Maroon",
   "Pink", "Purple", "Lavender",
   "Gold", "Silver", "Bronze",
-  "Multicolor", "Other"],
+  "Multicolor", "Other" ],
 
 
-      "Neutrals"       => ["White", "Black", "Gray", "Beige", "Brown", "Cream", "Tan", "Khaki"],
-      "Blues"          => ["Blue", "Navy", "Light Blue"],
-      "Greens"         => ["Green", "Olive", "Mint"],
-      "Warm Tones"     => ["Red", "Orange", "Yellow", "Maroon"],
-      "Pinks/Purples"  => ["Pink", "Purple", "Lavender"],
-      "Metallics"      => ["Gold", "Silver", "Bronze"],
-      "Other"          => ["Multicolor", "Other"]
+      "Neutrals"       => [ "White", "Black", "Gray", "Beige", "Brown", "Cream", "Tan", "Khaki" ],
+      "Blues"          => [ "Blue", "Navy", "Light Blue" ],
+      "Greens"         => [ "Green", "Olive", "Mint" ],
+      "Warm Tones"     => [ "Red", "Orange", "Yellow", "Maroon" ],
+      "Pinks/Purples"  => [ "Pink", "Purple", "Lavender" ],
+      "Metallics"      => [ "Gold", "Silver", "Bronze" ],
+      "Other"          => [ "Multicolor", "Other" ]
     }
 
     # Load only this user's items
@@ -48,7 +48,7 @@ class ClosetController < ApplicationController
 
     # Reorder based on your custom category sequence
     @items_grouped_by_category = desired_order.map do |cat|
-      [cat, grouped[cat] || []]
+      [ cat, grouped[cat] || [] ]
     end.to_h
 
     @color_groups = color_groups.keys

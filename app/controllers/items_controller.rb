@@ -41,7 +41,7 @@ end
     end
 
     if the_item.save
-      redirect_to "/items", notice: "Item created successfully."
+      redirect_to "/items", notice: "Item added to your closet."
     else
       @item = the_item
       render template: "item_templates/new"
@@ -84,4 +84,3 @@ end
 def item_params
   params.require(:item).permit(:name, :category)
 end 
-

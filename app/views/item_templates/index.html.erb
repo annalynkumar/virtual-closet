@@ -6,7 +6,7 @@
 
     <div style="margin-bottom: 1.25rem;">
       <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Name</label>
-      <%= form.text_field :name, class: "form-control", placeholder: "e.g. White shirt", style: "width: 100%; padding: 0.5rem;" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "e.g. White shirt", required: true, style: "width: 100%; padding: 0.5rem;" %>
     </div>
 
     <div style="margin-bottom: 1.25rem;">
@@ -46,9 +46,18 @@
 
   <% end %>
 
-  <hr style="margin: 2rem 0;">
+</div>
+<% if @item.errors.any? %>
+  <div class="alert alert-danger">
+    <h4>There were some problems with your submission:</h4>
+    <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
-  
 
 <div style="max-width: 600px; margin: 2rem auto 0; text-align: center;">
   <%= button_to "Take me to my closet", closet_path, class: "btn", method: :get, style: "background-color: #3d6f63; color: white; padding: 0.75rem 2rem; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;" %>

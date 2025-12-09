@@ -1,4 +1,11 @@
-<h1 style="margin-top: 2rem;">My Outfits</h1>
+
+  
+ <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+  <h2 style="margin-bottom: 1.5rem;">My Outfits</h2>
+  <%= link_to "➕ Add Item", outfit_items_new_path, class: "button-primary", style: "padding: 10px 16px; font-size: 1rem; border-radius: 6px;" %>
+</div>
+
+
 
 <div style="display: flex; overflow-x: auto; gap: 20px; scroll-snap-type: x mandatory; padding: 10px 0;">
   <% @list_of_outfits.each do |outfit| %>

@@ -6,7 +6,7 @@ class ClosetController < ApplicationController
       "Tops",
       "Pants",
       "Skirts",
-      "Dress",
+      "Dresses",
       "Outerwear",
       "Shoes",
       "Accessories"
@@ -16,6 +16,16 @@ class ClosetController < ApplicationController
     @selected_color_group = params[:color_group]
 
     color_groups = {
+      "No Filter" => [
+  "White", "Black", "Gray", "Beige", "Brown", "Cream", "Tan", "Khaki",
+  "Blue", "Navy", "Light Blue",
+  "Green", "Olive", "Mint",
+  "Red", "Orange", "Yellow", "Maroon",
+  "Pink", "Purple", "Lavender",
+  "Gold", "Silver", "Bronze",
+  "Multicolor", "Other"],
+
+
       "Neutrals"       => ["White", "Black", "Gray", "Beige", "Brown", "Cream", "Tan", "Khaki"],
       "Blues"          => ["Blue", "Navy", "Light Blue"],
       "Greens"         => ["Green", "Olive", "Mint"],

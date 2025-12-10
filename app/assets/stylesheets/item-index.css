@@ -1,4 +1,8 @@
-/* === Item Form Styling to Match Outfit Page === */
+.take-me-button {
+  display: block;
+  margin: 2rem auto 4rem auto; /* top, right, bottom, left */
+}
+
 
 .new-item-title {
   text-align: center;
@@ -69,4 +73,25 @@
   border-radius: 8px;
   text-align: center;
   font-weight: 500;
+}
+
+.closet-button-container {
+  max-width: 600px;
+  margin: 2rem auto 0;
+  text-align: center;
+}
+
+.button-primary {
+  background-color: #2e6f57;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: background 0.2s ease;
+}
+
+.button-primary:hover {
+  background-color: #245646;
 }

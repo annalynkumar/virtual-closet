@@ -1,0 +1,68 @@
+<div class="outfit-header">
+  <h2>My Outfits</h2>
+  <%= link_to "Add an Outfit", outfit_items_new_path, class: "button-primary add-outfit-btn" %>
+</div>
+
+<!-- FORM FOR CREATING A NEW OUTFIT -->
+<%= form_tag("/insert_outfit", method: :post) do %>
+  <div style="margin-bottom: 1rem;">
+    <label for="query_name"><strong>Outfit Name:</strong></label>
+    <input type="text" id="query_name" name="query_name" placeholder="e.g. Beach Day" required>
+  </div>
+
+  <div style="margin-bottom: 1rem;">
+    <label for="occasion_box"><strong>Occasion:</strong></label>
+    <input type="text" id="occasion_box" name="query_occasion" placeholder="Work, Casual, Formal, etc.">
+  </div>
+
+  <div style="margin-bottom: 1rem;">
+    <label for="season_box"><strong>Season:</strong></label>
+    <select id="season_box" name="query_season">
+      <option value="">Select Season</option>
+      <option value="Spring">Spring</option>
+      <option value="Summer">Summer</option>
+      <option value="Fall">Fall</option>
+      <option value="Winter">Winter</option>
+    </select>
+  </div>
+
+  <%= hidden_field_tag "query_user_id", current_user.id %>
+
+  <div>
+    <%= submit_tag "Create Outfit", class: "button-primary" %>
+  </div>
+<% end %>
+
+<hr>
+
+<!-- LIST OF EXISTING OUTFITS -->
+<div class="outfit-scroll-container">
+  <% @list_of_outfits.each do |outfit| %>
+    <div class="outfit-card">
+      <h4><%= outfit.name %></h4>
+
+      <p><strong>Occasion:</strong> <%= outfit.occasion.presence || "—" %></p>
+      <p><strong>Season:</strong> <%= outfit.season.presence || "—" %></p>
+
+      <p><strong>Items:</strong></p>
+
+      <% category_order = ["Top", "Pant", "Skirt", "Dress", "Outerwear", "Shoes", "Accessories"] %>
+      <% sorted_items = outfit.items.sort_by { |item| category_order.index(item.category) || 999 } %>
+
+      <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+        <% sorted_items.each do |item| %>
+          <li style="margin-bottom: 1rem;">
+            <div style="display: flex; align-items: center;">
+              <% if item.image.present? %>
+                <img src="<%= item.image.url %>" alt="<%= item.name %>" style="width: 80px; height: auto; margin-right: 1rem; border-radius: 8px;">
+              <% else %>
+                <div style="width: 80px; height: 80px; background-color: #eee; margin-right: 1rem; border-radius: 8px;"></div>
+              <% end %>
+              <strong><%= item.name %></strong>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

@@ -44,6 +44,14 @@
   <body class="pico">
       <header>
         <div class="container-two-thirds">
+        <% if notice.present? %>
+  <div class="flash-notice"><%= notice %></div>
+<% end %>
+
+<% if alert.present? %>
+  <div class="flash-alert"><%= alert %></div>
+<% end %>
+
           <nav>
             <ul>
               <li>
@@ -71,4 +79,3 @@
     </div>
   </body>
 </html>
-

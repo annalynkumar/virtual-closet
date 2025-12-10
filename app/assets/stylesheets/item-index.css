@@ -1,62 +1,54 @@
-.new-item-container {
-  max-width: 600px;
-  margin: 0 auto;
-  background: #fefefe;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
+/* === Item Form Styling to Match Outfit Page === */
 
 .new-item-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
   text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.new-item-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .form-group {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
 }
 
 .form-group label {
   display: block;
-  font-weight: 600;
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
-.form-group .form-control {
+.form-control {
   width: 100%;
-  padding: 0.5rem;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
+/* === Submit Button === */
 .submit-button {
+  width: 100%;
+  background-color: #2e6f57;
   color: white;
-  padding: 0.75rem 2rem;
+  padding: 12px;
   border: none;
   border-radius: 6px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  text-align: center;
-  display: inline-block;
+  margin-top: 2rem;
 }
 
-.alert-danger {
-  max-width: 600px;
-  margin: 2rem auto;
-  background: #ffe8e8;
-  padding: 1rem;
-  border: 1px solid #e0b4b4;
-  border-radius: 6px;
-  color: #9f3a38;
-}
-
-.closet-button-container {
-  max-width: 600px;
-  margin: 2rem auto 0;
-  text-align: center;
-}
-
+/* === Flash Messages === */
 .flash-notice {
   background-color: #d4edda;
   color: #155724;

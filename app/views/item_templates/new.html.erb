@@ -7,29 +7,30 @@
       <%= form.text_field :name, class: "form-control", placeholder: "White shirt" %>
     </div>
 
+   
     <div class="form-group">
       <label>Category:</label>
       <%= form.select :category,
-            ["Top", "Pant", "Skirt", "Dress", "Outerwear", "Shoes", "Accessories"],
+            ["Tops", "Pants", "Skirts", "Dresses", "Outerwear", "Shoes", "Accessories"],
             {}, class: "form-control" %>
     </div>
 
-    <div class="form-group">
+  <div style="margin-bottom: 1rem;">
       <label>Color:</label>
       <%= form.select :color,
             {
-              "Neutrals" => ["White", "Black", "Gray", "Beige", "Brown", "Cream", "Tan", "Khaki"],
-              "Blues"    => ["Navy", "Blue", "Light Blue"],
-              "Pinks"    => ["Pink", "Blush"],
-              "Reds"     => ["Red", "Maroon", "Burgundy"],
-              "Greens"   => ["Olive", "Green", "Sage", "Teal"],
-              "Yellows"  => ["Yellow", "Mustard"],
-              "Purples"  => ["Purple", "Lavender"],
-              "Oranges"  => ["Orange", "Rust"],
-              "Other"    => ["Multicolor", "Pattern", "Other"]
+              "Neutrals"       => ["White", "Black", "Gray", "Beige", "Brown", "Cream", "Tan", "Khaki"],
+              "Blues"          => ["Navy", "Blue", "Light Blue", "Teal", "Turquoise"],
+              "Greens"         => ["Green", "Olive", "Dark Green", "Mint"],
+              "Warm Tones"     => ["Yellow", "Mustard", "Orange", "Rust", "Red", "Burgundy"],
+              "Pinks/Purples"  => ["Pink", "Blush", "Hot Pink", "Purple", "Lavender"],
+              "Metallics"      => ["Gold", "Silver"],
+              "Other"          => ["Multicolor", "Patterned"]
             },
-            {}, class: "form-control" %>
+            {},
+            class: "form-control" %>
     </div>
+
 
     <div class="form-group">
       <label>Upload Image:</label>
@@ -41,6 +42,5 @@
 </div>
 
 <div class="closet-button-container">
-  <%= link_to "Take me to my closet", closet_path, class: "submit-button" %>
+  <%= link_to "Take me to my closet", closet_path, class: "button-primary" %>
 </div>
-

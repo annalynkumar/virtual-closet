@@ -1,21 +1,14 @@
-
-
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-  <h2 style="margin-bottom: .1rem;">My Closet</h2>
-  <%= link_to "Add Item", new_item_path, class: "button-primary", style: "padding: 10px 16px; font-size: 1rem; border-radius: 6px;" %>
+<div class="closet-top-bar">
+  <h2>My Closet</h2>
+  <%= link_to "Add Item", new_item_path, class: "button-primary" %>
 </div>
 
-<section style="margin-bottom: 2rem;">
-  <h2 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">
-    Filter by Color
-  </h2>
-
-  <form action="/closet" method="get" style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
-    <div style="flex-grow: 1; max-width: 250px;">
-      <label for="color_group" style="display: block; font-size: 0.9rem; margin-bottom: 0.25rem;">
-        Select a color group:
-      </label>
-      <select name="color_group" id="color_group" style="width: 100%; padding: 0.4rem; border: 1px solid #ccc; border-radius: 4px;">
+<section class="closet-filter-section">
+  <h2>Filter by Color</h2>
+  <form class="closet-filter-form" action="/closet" method="get">
+    <div>
+      <label for="color_group">Select a color group</label>
+      <select name="color_group" id="color_group">
         <option value="">No Filter</option>
         <% color_groups = ["Neutrals", "Blues", "Greens", "Warm Tones", "Pinks/Purples", "Metallics", "Other"] %>
         <% color_groups.each do |group| %>
@@ -25,61 +18,30 @@
     </div>
 
     <div>
-      <button type="submit" style="padding: 0.4rem 1rem; background-color: #3b7664; color: white; border: none; border-radius: 4px; margin-top: 1.6rem;">
-        Filter
-      </button>
+      <button type="submit" class="closet-filter-button">Filter</button>
     </div>
   </form>
 </section>
 
-
 <% @items_grouped_by_category.each do |category, items| %>
-  <h3 style="margin-top: 2rem; font-weight: bold;"><%= category.capitalize %></h3>
-
-  <div style="
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 20px;
-    margin-bottom: 1rem;
-  ">
+  <h3 style="margin-top: 2rem;"><%= category.capitalize %></h3>
+  <div class="item-grid">
     <% if items.empty? %>
-      <div style="
-        grid-column: 1 / -1;
-        background: #f8f8f8;
-        border: 1px dashed #ccc;
-        padding: 20px;
-        text-align: center;
-        color: #888;
-        border-radius: 8px;
-      ">
+      <div class="item-placeholder" style="grid-column: 1 / -1;">
         No items in this category yet.
       </div>
     <% else %>
       <% items.each do |item| %>
-        <div
-          style="
-            cursor: pointer;
-            text-align: center;
-            background: #fff;
-            padding: 12px;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s ease;
-          "
-          onclick="window.location='<%= item_path(item) %>'"
-        >
+        <div class="item-card" onclick="window.location='<%= item_path(item) %>'">
           <% if item.image.attached? %>
-            <%= image_tag item.image, style: "width: 100%; height: 140px; object-fit: cover; border-radius: 6px;" %>
+            <%= image_tag item.image, class: "item-image" %>
           <% else %>
-            <div style="width: 100%; height: 140px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #aaa; border-radius: 6px;">
-              No Image
-            </div>
+            <div class="item-placeholder">No Image</div>
           <% end %>
           <h4 style="margin-top: 8px; font-size: 0.9rem;"><%= item.name %></h4>
         </div>
       <% end %>
     <% end %>
   </div>
-<% end %>
 
-<hr class="my-5">
+<% end %>

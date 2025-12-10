@@ -73,26 +73,6 @@
   <% end %>
 </div>
 
-
-<style>
-  .item-select {
-    cursor: pointer;
-    border: 2px solid transparent;
-    border-radius: px;
-    padding: 6px;
-    transition: border-color 0.2s ease;
-  }
-
-  .item-select.selected {
-    border-color: #2f5d4a;
-    background-color: #f1f8f4;
-  }
-
-  .hidden-checkbox {
-    display: none;
-  }
-</style>
-
 <script>
   function toggleCheckbox(itemId) {
     const checkbox = document.getElementById(`checkbox_${itemId}`);

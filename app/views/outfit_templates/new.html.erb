@@ -1,4 +1,7 @@
-<h1 class="page-title">My Outfits</h1>
+<div class="closet-top-bar">
+  <h2>My Outfits</h2>
+  <%= link_to "Add an Outfit", new_outfit_path, class: "button-primary" %>
+</div>
 
 <div class="outfits-grid">
   <% @outfits.each do |outfit| %>

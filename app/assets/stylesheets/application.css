@@ -108,6 +108,7 @@ h1, h2, h3, h4, .header-logo {
 
 main {
   min-height: 100vh;
+  flex: 1;
   padding-bottom: 4rem;
 }
 

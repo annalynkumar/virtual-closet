@@ -23,13 +23,26 @@
       "accessory" => "Accessories"
     } %>
 
-    <%
-  display_order = ["Tops", "Pants", "Shoes", "Accessories"]
+   <%
+  category_labels = {
+    "top"       => "Tops",
+    "pant"      => "Pants",
+    "skirt"     => "Skirts",
+    "dress"     => "Dresses",
+    "outerwear" => "Outerwear",
+    "shoe"      => "Shoes",
+    "accessory" => "Accessories"
+  }
 
-  grouped_items = @items.group_by { |item| category_labels[item.category.to_s.downcase] || item.category.to_s.titleize }
+  display_order = ["Tops", "Pants", "Skirts", "Dresses", "Outerwear", "Shoes", "Accessories"]
+
+  grouped_items = @items.group_by do |item|
+    category_labels[item.category.to_s.downcase] || item.category.to_s.titleize
+  end
 
   sorted_grouped_items = grouped_items.sort_by { |category, _| display_order.index(category) || 999 }
 %>
+
 
 <% sorted_grouped_items.each do |category, items| %>
 

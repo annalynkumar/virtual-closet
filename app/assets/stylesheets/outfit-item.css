@@ -99,3 +99,20 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.selectable-image {
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: border 0.2s ease-in-out;
+}
+
+.item-select:hover .selectable-image {
+  border: 2px solid #4f7f6a;
+}
+
+.item-select.selected .selectable-image {
+  border: 2px solid #4f7f6a;
+  box-shadow: 0 0 8px rgba(79, 127, 106, 0.4);
+}
+

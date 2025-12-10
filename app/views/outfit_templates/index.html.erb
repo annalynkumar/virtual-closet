@@ -9,14 +9,23 @@
       <h4><%= outfit.name %></h4>
 
       <p><strong>Occasion:</strong> <%= outfit.occasion.presence || "—" %></p>
-      <p><strong>Season:</strong> <%= outfit.occasion.presence || "—" %></p>
-      
-      <p><strong>Items:</strong></p>
-      <ul>
-        <% outfit.items.each do |item| %>
-          <li><%= item.name %></li>
+      <p><strong>Season:</strong> <%= outfit.season.presence || "—" %></p>
+
+      <div class="outfit-items-preview">
+        <% category_order = ["top", "pant", "skirt", "dress", "outerwear", "shoe", "accessory"] %>
+        <% category_order.each do |category| %>
+          <% outfit.items.select { |item| item.category.downcase == category }.each do |item| %>
+            <div class="outfit-item">
+              <% if item.image.present? %>
+                <%= image_tag item.image.url, class: "outfit-item-image" %>
+              <% else %>
+                <div class="outfit-item-image no-image">No Image</div>
+              <% end %>
+              <div class="item-name"><%= item.name %></div>
+            </div>
+          <% end %>
         <% end %>
-      </ul>
+      </div>
     </div>
   <% end %>
 </div>

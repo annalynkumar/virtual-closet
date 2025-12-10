@@ -113,9 +113,21 @@
   font-size: 0.7rem;
 }
 
+.outfit-items-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.outfit-item {
+  text-align: center;
+  width: 90px;
+}
+
 .item-name {
-  margin-top: 0.25rem;
-  font-size: 0.75rem;
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

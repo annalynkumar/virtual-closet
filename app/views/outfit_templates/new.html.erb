@@ -1,74 +1,24 @@
-<h1 class="page-title">Create a New Outfit</h1>
+<h1 class="page-title">My Outfits</h1>
 
-<div class="outfit-form-wrapper">
-  <%= form_with url: "/insert_outfit_item", method: :post do %>
+<div class="outfits-grid">
+  <% @outfits.each do |outfit| %>
+    <div class="outfit-card">
+      <h2><%= outfit.name %></h2>
+      <p><strong>Occasion:</strong> <%= outfit.occasion %></p>
+      <p><strong>Season:</strong> <%= outfit.try(:season) || "N/A" %></p>
 
-    <div class="form-group">
-      <label>Outfit Name:</label><br>
-      <%= text_field_tag :outfit_name, nil, class: "form-control full-width", placeholder: "e.g. Dinner Outfit" %>
-    </div>
-
-    <div class="form-group">
-      <label>Occasion:</label><br>
-      <%= select_tag :occasion, options_for_select(["Casual", "Work", "Formal", "Date", "Workout", "Travel", "Lounge", "Party", "Event", "Other"]),
-            class: "form-control full-width" %>
-    </div>
-
-    <div class="form-group">
-      <label>Season:</label><br>
-      <%= select_tag :season, options_for_select(["Fall", "Winter", "Spring", "Summer"]),
-            class: "form-control full-width" %>
-    </div>
-
-    <h2 class="section-heading">Select Items from Your Closet:</h2>
-
-    <%
-
-      display_order = ["Tops", "Pants", "Skirts", "Dresses", "Outerwear", "Shoes", "Accessories"]
-
-      grouped_items = @items.group_by do |item|
-        category_labels[item.category.to_s.downcase] || item.category.to_s.titleize
-      end
-
-      sorted_grouped_items = grouped_items.sort_by { |category, _| display_order.index(category) || 999 }
-    %>
-
-    <% sorted_grouped_items.each do |category, items| %>
-      <div class="category-group">
-        <h3 class="category-title"><%= category %></h3>
-        <div class="item-scroll-container">
-          <% items.each do |item| %>
-            <div class="item-select" id="item_<%= item.id %>" onclick="toggleCheckbox(<%= item.id %>)">
-              <%= check_box_tag "item_ids[]", item.id, false, id: "checkbox_#{item.id}", class: "hidden-checkbox" %>
-
-              <% if item.image.present? %>
-                <%= image_tag item.image.url, class: "selectable-image" %>
-              <% else %>
-                <div class="selectable-image no-image">No Image</div>
-              <% end %>
-
-              <div class="item-name"><%= item.name %></div>
-            </div>
-          <% end %>
-        </div>
+      <div class="outfit-items-preview">
+        <% outfit.items.each do |item| %>
+          <div class="outfit-item">
+            <% if item.image.present? %>
+              <%= image_tag item.image.url, class: "outfit-item-image" %>
+            <% else %>
+              <div class="outfit-item-image no-image">No Image</div>
+            <% end %>
+            <div class="item-name"><%= item.name %></div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-
-    <div class="submit-container">
-      <%= submit_tag "Create Outfit", class: "button-primary" %>
     </div>
-
   <% end %>
 </div>
-
-
-<script>
-  function toggleCheckbox(itemId) {
-    const checkbox = document.getElementById(`checkbox_${itemId}`);
-    const container = document.getElementById(`item_${itemId}`);
-    if (checkbox && container) {
-      checkbox.checked = !checkbox.checked;
-      container.classList.toggle("selected", checkbox.checked);
-    }
-  }
-</script>

@@ -32,6 +32,4 @@ class OutfitItemsController < ApplicationController
       redirect_to "/outfit_items/new", alert: "Something went wrong."
     end
   end
-
-
 end

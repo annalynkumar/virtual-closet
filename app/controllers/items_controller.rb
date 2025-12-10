@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
 
   def new
   @item = Item.new
-  @list_of_items = Item.order(created_at: :desc) 
+  @list_of_items = Item.order(created_at: :desc)
   render template: "item_templates/new"
 end
 

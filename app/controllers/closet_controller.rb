@@ -32,15 +32,15 @@ class ClosetController < ApplicationController
       "Other"          => [ "Multicolor", "Other" ]
     }
 
-    
+
     items = current_user.items.order(:created_at)
 
-    
+
     if @selected_color_group.present? && color_groups[@selected_color_group]
       items = items.where(color: color_groups[@selected_color_group])
     end
 
-    
+
     grouped = items.group_by(&:category)
 
     @items_grouped_by_category = desired_order.map do |cat|

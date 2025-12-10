@@ -31,5 +31,4 @@ end
       redirect_to("/outfits", { :alert => the_outfit.errors.full_messages.to_sentence })
     end
   end
-  
 end

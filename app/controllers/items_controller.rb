@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   def index
-    # form at the top of the page needs a fresh Item object
     @item = Item.new
 
     matching_items = Item.all
@@ -9,12 +8,11 @@ class ItemsController < ApplicationController
     render template: "item_templates/index"
   end
 
-  # keep your other actions (new, create, show, etc.) below…
 
 
   def new
   @item = Item.new
-  @list_of_items = Item.order(created_at: :desc) # ← Add this line
+  @list_of_items = Item.order(created_at: :desc) 
   render template: "item_templates/new"
 end
 

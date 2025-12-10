@@ -134,11 +134,10 @@ h2, h3 {
 }
 
 .closet-page-container {
-  margin-bottom: 3rem; /* Adjust value as needed */
+  margin-bottom: 3rem;
   padding-bottom: 2rem;
 }
 
 .item-grid:last-of-type {
   margin-bottom: 3rem;
 }
-

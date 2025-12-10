@@ -135,3 +135,25 @@ main {
   display: inline-block;
   font-size: 1.05rem;
 }
+.outfit-scroll-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  /* These help center the scroll container on larger screens */
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+
+.outfit-card {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}

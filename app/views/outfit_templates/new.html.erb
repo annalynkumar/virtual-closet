@@ -23,15 +23,6 @@
     <h2 class="section-heading">Select Items from Your Closet:</h2>
 
     <%
-      category_labels = {
-        "top"       => "Tops",
-        "pant"      => "Pants",
-        "skirt"     => "Skirts",
-        "dress"     => "Dresses",
-        "outerwear" => "Outerwear",
-        "shoe"      => "Shoes",
-        "accessory" => "Accessories"
-      }
 
       display_order = ["Tops", "Pants", "Skirts", "Dresses", "Outerwear", "Shoes", "Accessories"]
 
@@ -70,7 +61,7 @@
   <% end %>
 </div>
 
-<!-- JavaScript toggle logic -->
+
 <script>
   function toggleCheckbox(itemId) {
     const checkbox = document.getElementById(`checkbox_${itemId}`);

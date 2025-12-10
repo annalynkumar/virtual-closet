@@ -22,19 +22,32 @@
 
     <h2 class="section-heading">Select Items from Your Closet:</h2>
 
-    <% category_labels = {
-      "top" => "Tops",
-      "pant" => "Pants",
-      "shoe" => "Shoes",
-      "accessory" => "Accessories"
-    } %>
+    <%
+      category_labels = {
+        "top"       => "Tops",
+        "pant"      => "Pants",
+        "skirt"     => "Skirts",
+        "dress"     => "Dresses",
+        "outerwear" => "Outerwear",
+        "shoe"      => "Shoes",
+        "accessory" => "Accessories"
+      }
 
-    <% @items.group_by { |item| category_labels[item.category.to_s.downcase] || item.category.to_s.titleize }.each do |category, items| %>
+      display_order = ["Tops", "Pants", "Skirts", "Dresses", "Outerwear", "Shoes", "Accessories"]
+
+      grouped_items = @items.group_by do |item|
+        category_labels[item.category.to_s.downcase] || item.category.to_s.titleize
+      end
+
+      sorted_grouped_items = grouped_items.sort_by { |category, _| display_order.index(category) || 999 }
+    %>
+
+    <% sorted_grouped_items.each do |category, items| %>
       <div class="category-group">
         <h3 class="category-title"><%= category %></h3>
         <div class="item-scroll-container">
           <% items.each do |item| %>
-            <div class="item-select" data-checkbox-id="checkbox_<%= item.id %>" onclick="toggleCheckbox(<%= item.id %>)">
+            <div class="item-select" id="item_<%= item.id %>" onclick="toggleCheckbox(<%= item.id %>)">
               <%= check_box_tag "item_ids[]", item.id, false, id: "checkbox_#{item.id}", class: "hidden-checkbox" %>
 
               <% if item.image.present? %>
@@ -57,30 +70,11 @@
   <% end %>
 </div>
 
-<!-- Optional: Visual feedback for selected items -->
-<style>
-  .item-select {
-    cursor: pointer;
-    border: 2px solid transparent;
-    border-radius: 6px;
-    padding: 6px;
-    transition: border-color 0.2s ease;
-  }
-
-  .item-select.selected {
-    border-color: #2f5d4a;
-    background-color: #f1f8f4;
-  }
-
-  .hidden-checkbox {
-    display: none;
-  }
-</style>
-
+<!-- JavaScript toggle logic -->
 <script>
   function toggleCheckbox(itemId) {
     const checkbox = document.getElementById(`checkbox_${itemId}`);
-    const container = document.querySelector(`[data-checkbox-id="checkbox_${itemId}"]`);
+    const container = document.getElementById(`item_${itemId}`);
     if (checkbox && container) {
       checkbox.checked = !checkbox.checked;
       container.classList.toggle("selected", checkbox.checked);

@@ -29,22 +29,17 @@ h2, h3 {
   background-color: #3b7664;
   color: white;
   border: none;
-  border-radius: 6px;
-  padding: 8px 12px; 
-  font-size: 0.95rem; 
+  border-radius: 5px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  white-space: nowrap; 
-   max-width: 115px;
+  white-space: nowrap;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-
-
-.button-primary:hover {
-  background-color: #2f5e4e;
+  display: inline-block;
 }
 
 

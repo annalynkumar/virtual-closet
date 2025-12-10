@@ -34,9 +34,7 @@
             <div class="item-select" data-checkbox-id="checkbox_<%= item.id %>">
               <%= check_box_tag "item_ids[]", item.id, false, id: "checkbox_#{item.id}", class: "hidden-checkbox" %>
 
-              <% if item.image.attached? %>
-                <%= image_tag item.image.variant(resize_to_limit: [140, 140]), class: "selectable-image" %>
-              <% else %>
+              <% if item.image.present? %>
                 <div class="selectable-image no-image">No Image</div>
               <% end %>
 

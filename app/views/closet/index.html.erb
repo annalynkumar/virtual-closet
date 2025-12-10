@@ -33,16 +33,15 @@
     <% else %>
       <% items.each do |item| %>
         <div class="item-card">
-          <% if item.image.attached? %>
-            <%= image_tag item.image, class: "item-image" %>
-          <% else %>
-            <div class="item-placeholder">No Image</div>
-          <% end %>
+          <% if item.image? %>
+  <%= image_tag item.image.url, class: "item-image" %>
+<% else %>
+  <div class="item-placeholder">No Image</div>
+<% end %>
+
           <h4 style="margin-top: 8px; font-size: 0.9rem;"><%= item.name %></h4>
         </div>
       <% end %>
     <% end %>
   </div>
 <% end %>
-
-

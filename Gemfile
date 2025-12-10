@@ -1,9 +1,6 @@
 source "https://rubygems.org"
 
-gem "carrierwave"
-gem "cloudinary"
-gem "image_processing", "~> 1.2"
-gem "mini_magick"
+
 
 
 
@@ -84,6 +81,8 @@ gem "rollbar"
 gem "simple_form"
 gem "strip_attributes"
 gem "validate_url"
+gem "image_processing", "~> 1.2"
+gem "mini_magick"
 
 group :development do
   gem "annotaterb"

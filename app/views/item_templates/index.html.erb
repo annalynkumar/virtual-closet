@@ -44,16 +44,6 @@
   <% end %>
 </div>
 
-<% if @item.errors.any? %>
-  <div class="alert alert-danger">
-    <h4>There were some problems with your submission:</h4>
-    <ul>
-      <% @item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 
 <div class="closet-button-container">
   <%= button_to "Take me to my closet", closet_path, class: "submit-button", method: :get %>

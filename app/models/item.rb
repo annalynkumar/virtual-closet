@@ -5,6 +5,7 @@
 #  id         :bigint           not null, primary key
 #  category   :string
 #  color      :string
+#  image      :string
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

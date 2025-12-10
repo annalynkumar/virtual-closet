@@ -7,16 +7,18 @@ class OutfitsController < ApplicationController
   render({ :template => "outfit_templates/index" })
 end
 
+def new
+  @outfit = Outfit.new
+  @items = Item.where(user_id: current_user.id) # or however you're loading items
+  render template: "outfit_templates/new"
+end
 
-  def show
-    the_id = params.fetch("path_id")
 
-    matching_outfits = Outfit.where({ :id => the_id })
-
-    @the_outfit = matching_outfits.at(0)
-
-    render({ :template => "outfit_templates/show" })
-  end
+ def show
+  the_id = params.fetch("path_id")
+  @the_outfit = Outfit.includes(:items).find(the_id)
+  render template: "outfit_templates/show"
+end
 
   def create
     the_outfit = Outfit.new

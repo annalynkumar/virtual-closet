@@ -3,20 +3,17 @@
 <div class="outfit-form-wrapper">
   <%= form_with url: "/insert_outfit_item", method: :post do %>
 
-   
     <div class="form-group">
       <label>Outfit Name:</label><br>
       <%= text_field_tag :outfit_name, nil, class: "form-control full-width", placeholder: "e.g. Dinner Outfit" %>
     </div>
 
-  
     <div class="form-group">
       <label>Occasion:</label><br>
       <%= select_tag :occasion, options_for_select(["Casual", "Work", "Formal", "Date", "Workout", "Travel", "Lounge", "Party", "Event", "Other"]),
             class: "form-control full-width" %>
     </div>
 
-  
     <h2 class="section-heading">Select Items from Your Closet:</h2>
 
     <% category_labels = {
@@ -31,10 +28,12 @@
         <h3 class="category-title"><%= category %></h3>
         <div class="item-scroll-container">
           <% items.each do |item| %>
-            <div class="item-select" data-checkbox-id="checkbox_<%= item.id %>">
+            <div class="item-select" data-checkbox-id="checkbox_<%= item.id %>" onclick="toggleCheckbox(<%= item.id %>)">
               <%= check_box_tag "item_ids[]", item.id, false, id: "checkbox_#{item.id}", class: "hidden-checkbox" %>
 
               <% if item.image.present? %>
+                <%= image_tag item.image.url, class: "selectable-image" %>
+              <% else %>
                 <div class="selectable-image no-image">No Image</div>
               <% end %>
 
@@ -45,7 +44,6 @@
       </div>
     <% end %>
 
-  
     <div class="submit-container">
       <%= submit_tag "Create Outfit", class: "button-primary" %>
     </div>
@@ -53,8 +51,33 @@
   <% end %>
 </div>
 
-        }
-      });
-    });
-  });
+<!-- Optional: Visual feedback for selected items -->
+<style>
+  .item-select {
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    padding: 6px;
+    transition: border-color 0.2s ease;
+  }
+
+  .item-select.selected {
+    border-color: #2f5d4a;
+    background-color: #f1f8f4;
+  }
+
+  .hidden-checkbox {
+    display: none;
+  }
+</style>
+
+<script>
+  function toggleCheckbox(itemId) {
+    const checkbox = document.getElementById(`checkbox_${itemId}`);
+    const container = document.querySelector(`[data-checkbox-id="checkbox_${itemId}"]`);
+    if (checkbox && container) {
+      checkbox.checked = !checkbox.checked;
+      container.classList.toggle("selected", checkbox.checked);
+    }
+  }
 </script>

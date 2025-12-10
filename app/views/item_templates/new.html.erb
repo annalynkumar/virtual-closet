@@ -1,52 +1,49 @@
-<h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1.5rem; text-align: center;">Add a New Item</h1>
+<h1 class="new-item-title">Add a New Item</h1>
 
-<div style="max-width: 600px; margin: 0 auto; background: #fefefe; border: 1px solid #ddd; border-radius: 10px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
-
+<div class="new-item-container">
   <%= form_with model: @item, url: "/insert_item", multipart: true do |form| %>
 
-    <div style="margin-bottom: 1.25rem;">
-      <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Name</label>
-      <%= form.text_field :name, class: "form-control", placeholder: "e.g. White shirt", required: true, style: "width: 100%; padding: 0.5rem;" %>
+    <div class="form-group">
+      <label>Name</label>
+      <%= form.text_field :name, class: "form-control", placeholder: "e.g. White shirt", required: true %>
     </div>
 
-    <div style="margin-bottom: 1.25rem;">
-      <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Category</label>
+    <div class="form-group">
+      <label>Category</label>
       <%= form.select :category,
-          ["Tops", "Pants", "Skirts", "Dresses", "Outerwear", "Shoes", "Accessories"],
-          {},
-          class: "form-control",
-          style: "width: 100%; padding: 0.5rem;" %>
+            ["Tops", "Pants", "Skirts", "Dresses", "Outerwear", "Shoes", "Accessories"],
+            {},
+            class: "form-control" %>
     </div>
 
-    <div style="margin-bottom: 1.25rem;">
-      <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Color</label>
+    <div class="form-group">
+      <label>Color</label>
       <%= form.select :color,
-          {
-            "Neutrals"       => ["White", "Black", "Gray", "Beige", "Brown", "Cream", "Tan", "Khaki"],
-            "Blues"          => ["Navy", "Blue", "Light Blue", "Teal", "Turquoise"],
-            "Greens"         => ["Green", "Olive", "Dark Green", "Mint"],
-            "Warm Tones"     => ["Yellow", "Mustard", "Orange", "Rust", "Red", "Burgundy"],
-            "Pinks/Purples"  => ["Pink", "Blush", "Hot Pink", "Purple", "Lavender"],
-            "Metallics"      => ["Gold", "Silver"],
-            "Other"          => ["Multicolor", "Patterned"]
-          },
-          {},
-          class: "form-control",
-          style: "width: 100%; padding: 0.5rem;" %>
+            {
+              "Neutrals"       => ["White", "Black", "Gray", "Beige", "Brown", "Cream", "Tan", "Khaki"],
+              "Blues"          => ["Navy", "Blue", "Light Blue", "Teal", "Turquoise"],
+              "Greens"         => ["Green", "Olive", "Dark Green", "Mint"],
+              "Warm Tones"     => ["Yellow", "Mustard", "Orange", "Rust", "Red", "Burgundy"],
+              "Pinks/Purples"  => ["Pink", "Blush", "Hot Pink", "Purple", "Lavender"],
+              "Metallics"      => ["Gold", "Silver"],
+              "Other"          => ["Multicolor", "Patterned"]
+            },
+            {},
+            class: "form-control" %>
     </div>
 
-    <div style="margin-bottom: 1.5rem;">
-      <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Upload Image</label>
-      <%= form.file_field :image_file, class: "form-control", style: "width: 100%; padding: 0.5rem;" %>
+    <div class="form-group">
+      <label>Upload Image</label>
+      <%= form.file_field :image_file, class: "form-control" %>
     </div>
 
-    <div style="text-align: center; margin-bottom: 1rem;">
-      <%= form.submit "Create Item", style: "background-color: #3d6f63; color: white; padding: 0.75rem 2rem; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;" %>
+    <div class="form-group" style="text-align: center;">
+      <%= form.submit "Create Item", class: "submit-button" %>
     </div>
 
   <% end %>
-
 </div>
+
 <% if @item.errors.any? %>
   <div class="alert alert-danger">
     <h4>There were some problems with your submission:</h4>
@@ -58,7 +55,6 @@
   </div>
 <% end %>
 
-
-<div style="max-width: 600px; margin: 2rem auto 0; text-align: center;">
-  <%= button_to "Take me to my closet", closet_path, class: "btn", method: :get, style: "background-color: #3d6f63; color: white; padding: 0.75rem 2rem; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;" %>
+<div class="closet-button-container">
+  <%= button_to "Take me to my closet", closet_path, class: "submit-button", method: :get %>
 </div>

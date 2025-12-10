@@ -40,7 +40,7 @@ end
     the_item.category = params[:item][:category]
     the_item.color    = params[:item][:color]
     the_item.user_id  = current_user.id
-    @item = current_user.items.new(item_params)
+
 
 
     # Attach uploaded image (if you're using ActiveStorage)

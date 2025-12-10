@@ -16,4 +16,5 @@ class Item < ApplicationRecord
   has_many   :outfit_items, class_name: "OutfitItem", foreign_key: "item_id", dependent: :destroy
   has_one_attached :image
   validates :name, presence: true
+  mount_uploader :image, ImageUploader
 end

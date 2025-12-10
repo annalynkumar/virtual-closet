@@ -23,7 +23,16 @@
       "accessory" => "Accessories"
     } %>
 
-    <% @items.group_by { |item| category_labels[item.category.to_s.downcase] || item.category.to_s.titleize }.each do |category, items| %>
+    <%
+  display_order = ["Tops", "Pants", "Shoes", "Accessories"]
+
+  grouped_items = @items.group_by { |item| category_labels[item.category.to_s.downcase] || item.category.to_s.titleize }
+
+  sorted_grouped_items = grouped_items.sort_by { |category, _| display_order.index(category) || 999 }
+%>
+
+<% sorted_grouped_items.each do |category, items| %>
+
       <div class="category-group">
         <h3 class="category-title"><%= category %></h3>
         <div class="item-scroll-container">
@@ -51,7 +60,7 @@
   <% end %>
 </div>
 
-<!-- Optional: Visual feedback for selected items -->
+
 <style>
   .item-select {
     cursor: pointer;

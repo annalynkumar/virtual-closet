@@ -30,12 +30,12 @@ h2, h3 {
   color: white;
   border: none;
   border-radius: 6px;
-  padding: 8px 12px; /* reduced padding */
-  font-size: 0.95rem; /* slightly smaller text */
+  padding: 8px 12px; 
+  font-size: 0.95rem; 
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  white-space: nowrap; /* ensures text doesn't wrap */
+  white-space: nowrap; 
    max-width: 115px;
   overflow: hidden;
   text-overflow: ellipsis;

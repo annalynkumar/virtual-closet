@@ -2,38 +2,17 @@
 <html>
   <head>
     <title><%= content_for(:title) || "My Virtual Closet" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= yield :head %>
+    
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
-    <!-- Custom Colors BEFORE Pico -->
-    <style>
-      :root {
-        --pico-primary: #4f7f6a;
-        --pico-primary-hover: #3e6655;
-        --pico-primary-focus: #3e6655;
-        --pico-primary-inverse: #ffffff;
-        --pico-background-color: #f6f5f3;
-      }
-    </style>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.conditional.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css">
 
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
-    <!-- Custom Styling -->
+
     <style>
       html, body {
         height: 100%;
@@ -44,41 +23,25 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        background-color: #f6f5f3;
       }
-
-      .page-wrapper {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-
-      main {
-        flex: 1; /* ✨ This makes the main content push to the bottom */
-      }
-
-      label abbr {
-        display: none;
-      }
+.center-text {
+  text-align: center;
+}
 
       a {
         color: #4f7f6a;
       }
 
-      a:hover {
-        color: #3e6655;
-      }
-
       button,
       input[type="submit"] {
-        background-color: #4f7f6a !important;
-        border-color: #4f7f6a !important;
+        background-color: #4f7f6a;
+        border-color: #4f7f6a;
       }
+
     </style>
   </head>
 
   <body class="pico">
-    <div class="page-wrapper">
       <header>
         <div class="container-two-thirds">
           <nav>
@@ -91,7 +54,8 @@
                 <li><a href="/users/sign_up">Sign up</a></li>
               <% else %>
                 <li><a href="/users/edit">Edit profile</a></li>
-                <li><%= link_to "Log out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %></li>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
+
               <% end %>
             </ul>
           </nav>
@@ -100,11 +64,11 @@
 
       <main>
         <div class="container-two-thirds">
-          <div class="text-success"><%= notice %></div>
-          <div class="text-danger"><%= alert %></div>
           <%= yield %>
         </div>
       </main>
+
     </div>
   </body>
 </html>
+

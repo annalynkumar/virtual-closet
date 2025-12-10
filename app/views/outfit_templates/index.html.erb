@@ -1,20 +1,16 @@
-
-  
- <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-  <h2 style="margin-bottom: 1.5rem;">My Outfits</h2>
-  <%= link_to "Add Outfit", outfit_items_new_path, class: "button-primary", style: "padding: 10px 16px; font-size: 1rem; border-radius: 6px;" %>
+<div class="outfit-header">
+  <h2>My Outfits</h2>
+  <%= link_to "Add Outfit", outfit_items_new_path, class: "button-primary add-outfit-btn" %>
 </div>
 
-
-
-<div style="display: flex; overflow-x: auto; gap: 20px; scroll-snap-type: x mandatory; padding: 10px 0;">
+<div class="outfit-scroll-container">
   <% @list_of_outfits.each do |outfit| %>
-    <div style="min-width: 300px; flex: 0 0 auto; scroll-snap-align: start; border: 1px solid #ddd; border-radius: 8px; padding: 16px; background: #fafafa; box-shadow: 0 1px 4px rgba(0,0,0,0.05);">
+    <div class="outfit-card">
       <h4><%= outfit.name %></h4>
 
       <p><strong>Occasion:</strong> <%= outfit.occasion.presence || "—" %></p>
       <p><strong>Items:</strong></p>
-      <ul style="padding-left: 20px;">
+      <ul>
         <% outfit.items.each do |item| %>
           <li><%= item.name %></li>
         <% end %>

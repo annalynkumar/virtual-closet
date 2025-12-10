@@ -1,25 +1,23 @@
-<h1 style="text-align: center; margin-bottom: 2rem;">Create a New Outfit</h1>
+<h1 class="page-title">Create a New Outfit</h1>
 
-<div style="max-width: 700px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-
+<div class="outfit-form-wrapper">
   <%= form_with url: "/insert_outfit_item", method: :post do %>
 
-    <!-- Outfit Name -->
-    <div style="margin-bottom: 1.5rem;">
-      <label style="font-weight: 600;">Outfit Name:</label><br>
-      <%= text_field_tag :outfit_name, nil, class: "form-control", placeholder: "e.g. Dinner Outfit", style: "width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" %>
+   
+    <div class="form-group">
+      <label>Outfit Name:</label><br>
+      <%= text_field_tag :outfit_name, nil, class: "form-control full-width", placeholder: "e.g. Dinner Outfit" %>
     </div>
 
-    <!-- Occasion Dropdown -->
-    <div style="margin-bottom: 1.5rem;">
-      <label style="font-weight: 600;">Occasion:</label><br>
+  
+    <div class="form-group">
+      <label>Occasion:</label><br>
       <%= select_tag :occasion, options_for_select(["Casual", "Work", "Formal", "Date", "Workout", "Travel", "Lounge", "Party", "Event", "Other"]),
-            class: "form-control",
-            style: "width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" %>
+            class: "form-control full-width" %>
     </div>
 
-    <!-- Closet Item Selection -->
-    <h2 style="margin: 2rem 0 1rem; font-size: 1.2rem;">Select Items from Your Closet:</h2>
+  
+    <h2 class="section-heading">Select Items from Your Closet:</h2>
 
     <% category_labels = {
       "top" => "Tops",
@@ -29,25 +27,20 @@
     } %>
 
     <% @items.group_by { |item| category_labels[item.category.to_s.downcase] || item.category.to_s.titleize }.each do |category, items| %>
-      <div style="margin-top: 2rem;">
-        <h3 style="font-size: 1.1rem; color: #333; margin-bottom: 1rem;"><%= category %></h3>
-
-        <div style="display: flex; gap: 24px; overflow-x: auto; padding-bottom: 1rem;">
+      <div class="category-group">
+        <h3 class="category-title"><%= category %></h3>
+        <div class="item-scroll-container">
           <% items.each do |item| %>
-            <div class="item-select" data-checkbox-id="checkbox_<%= item.id %>" style="flex: 0 0 auto; width: 140px; text-align: center; cursor: pointer;">
-              <%= check_box_tag "item_ids[]", item.id, false, id: "checkbox_#{item.id}", style: "display: none;" %>
+            <div class="item-select" data-checkbox-id="checkbox_<%= item.id %>">
+              <%= check_box_tag "item_ids[]", item.id, false, id: "checkbox_#{item.id}", class: "hidden-checkbox" %>
 
               <% if item.image.attached? %>
-                <%= image_tag item.image.variant(resize_to_limit: [140, 140]),
-                      class: "selectable-image",
-                      style: "width: 140px; height: 140px; object-fit: cover; border-radius: 10px; border: 2px solid #ccc; margin-bottom: 8px;" %>
+                <%= image_tag item.image.variant(resize_to_limit: [140, 140]), class: "selectable-image" %>
               <% else %>
-                <div class="selectable-image" style="width: 140px; height: 140px; background-color: #eee; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #999; font-size: 0.85rem; margin-bottom: 8px; border: 2px solid #ccc;">
-                  No Image
-                </div>
+                <div class="selectable-image no-image">No Image</div>
               <% end %>
 
-              <div style="font-size: 0.95rem; color: #333;"><%= item.name %></div>
+              <div class="item-name"><%= item.name %></div>
             </div>
           <% end %>
         </div>
@@ -55,26 +48,13 @@
     <% end %>
 
     <!-- Submit Button -->
-    <div style="margin-top: 2.5rem;">
-      <%= submit_tag "Create Outfit", class: "button-primary", style: "width: 100%; background-color: #2e6f57; color: white; padding: 12px; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer;" %>
+    <div class="submit-container">
+      <%= submit_tag "Create Outfit", class: "button-primary" %>
     </div>
 
   <% end %>
 </div>
 
-<!-- Selection Highlight Script -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".item-select").forEach(function (block) {
-      block.addEventListener("click", function () {
-        const checkboxId = block.getAttribute("data-checkbox-id");
-        const checkbox = document.getElementById(checkboxId);
-
-        if (checkbox) {
-          checkbox.checked = !checkbox.checked;
-          block.querySelector(".selectable-image").style.border = checkbox.checked
-            ? "3px solid #2e6f57"
-            : "2px solid #ccc";
         }
       });
     });

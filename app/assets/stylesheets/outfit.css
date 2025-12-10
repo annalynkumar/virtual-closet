@@ -1,0 +1,39 @@
+.outfit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.outfit-header h2 {
+  margin-bottom: 1.5rem;
+}
+
+.add-outfit-btn {
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 6px;
+}
+
+.outfit-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  scroll-snap-type: x mandatory;
+  padding: 10px 0;
+}
+
+.outfit-card {
+  min-width: 300px;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fafafa;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.outfit-card ul {
+  padding-left: 20px;
+}

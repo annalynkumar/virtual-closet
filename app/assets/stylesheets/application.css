@@ -95,18 +95,6 @@ h1, h2, h3, h4, .header-logo {
   background: #1e3e34;
 }
 
-.how-it-works-box {
-  background: #2f5d4a;
-  border-radius: 14px;
-  padding: 2.5rem;
-  margin-top: 3rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-}
-
-.how-it-works-box h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
 
 .steps {
   display: grid;
@@ -124,9 +112,7 @@ main {
   min-height: 100vh;
 }
 
-.how-it-works-wrapper {
-  padding-bottom: 4rem;
-}
+
 
 .hero {
   margin-top: 1.75rem;  

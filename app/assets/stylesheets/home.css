@@ -1,0 +1,49 @@
+.welcome-card {
+  background: white;
+  padding: 2rem;
+  margin: 2rem auto;
+  border-radius: 16px;
+  max-width: 600px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.welcome-card h2 {
+  font-size: 2rem;
+  color: #2f5d4a;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-card p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.home-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+.home-button {
+  background: #2f5d4a;
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  transition: background 0.2s ease;
+}
+
+.home-button:hover {
+  background: #244a3b;
+}

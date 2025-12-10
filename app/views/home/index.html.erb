@@ -1,81 +1,25 @@
-<style>
-  .welcome-card {
-  background: white;
-  padding: 2rem;
-  margin: 2rem auto;
-  border-radius: 16px;
-  max-width: 600px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-  text-align: center;
-}
-
-.welcome-card h2 {
-  font-size: 2rem;
-  color: #2f5d4a;
-  margin-bottom: 0.5rem;
-}
-
-.welcome-card p {
-  font-size: 1.1rem;
-  color: #555;
-  margin-bottom: 2rem;
-}
-
-.home-buttons-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1.5rem;
-  justify-items: center;
-}
-
-.home-button {
-  background: #2f5d4a;
-  color: white;
-  padding: 1rem;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  width: 100%;
-  max-width: 200px;
-  text-align: center; /* ← Horizontally center text */
-  display: flex;      /* ← Make button a flex container */
-  justify-content: center; /* ← Center text horizontally */
-  align-items: center;     /* ← Center text vertically */
-  height: 80px;       /* Optional: consistent height for all buttons */
-  transition: background 0.2s ease;
-}
-
-
-.home-button:hover {
-  background: #244a3b;
-}
-
-</style>
-
 <div class="page-content">
-
   <% unless user_signed_in? %>
-  <div class="hero">
-    <h1 class="center-text">Create Outfits Effortlessly</h1>
-
-    <h3 class="center-text">
-      Upload your wardrobe. Mix and match pieces.<br>
-      Let your virtual closet help you style with ease.
-    </h3>
-  </div>
-<% end %>
-
-
- <% if user_signed_in? %>
-  <div class="welcome-card">
-    <h2>Welcome, <%= current_user.name.presence || current_user.email %>!</h2>
-    <p>What would you like to do today?</p>
-
-    <div class="home-buttons-grid">
-      <%= link_to "Add an Item", new_item_path, class: "home-button" %>
-      <%= link_to "Create an Outfit", "/outfit_items/new", class: "home-button" %>
-      <%= link_to "View My Closet", "/closet", class: "home-button" %>
-      <%= link_to "View My Outfits", outfits_path, class: "home-button" %>
+    <div class="hero">
+      <h1 class="center-text">Create Outfits Effortlessly</h1>
+      <h3 class="center-text">
+        Upload your wardrobe. Mix and match pieces.<br>
+        Let your virtual closet help you style with ease.
+      </h3>
     </div>
-  </div>
-<% end %>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <div class="welcome-card">
+      <h2>Welcome, <%= current_user.name.presence || current_user.email %>!</h2>
+      <p>What would you like to do today?</p>
+
+      <div class="home-buttons-grid">
+        <%= link_to "Add an Item", new_item_path, class: "home-button" %>
+        <%= link_to "Create an Outfit", "/outfit_items/new", class: "home-button" %>
+        <%= link_to "View My Closet", "/closet", class: "home-button" %>
+        <%= link_to "View My Outfits", outfits_path, class: "home-button" %>
+      </div>
+    </div>
+  <% end %>
+</div>
